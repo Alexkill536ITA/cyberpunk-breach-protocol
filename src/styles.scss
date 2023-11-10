@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+@import "primeng/resources/themes/arya-orange/theme.css";
+@import "primeng/resources/primeng.css";
+
+$cursor-sm: './assets/img/Cursor-cy-mini.png';
+$cursor-md: './assets/img/Cursor-cy-mid.png';
+$cursor-xl: './assets/img/Cursor-cy.png';
+
+@font-face {
+    font-family: 'Rajdhani-Regular';
+    src: url('./assets/font/Rajdhani-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Rajdhani-Light';
+    src: url('./assets/font/Rajdhani-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Rajdhani-Medium';
+    src: url('./assets/font/Rajdhani-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Rajdhani-SemiBold';
+    src: url('./assets/font/Rajdhani-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Rajdhani-Bold';
+    src: url('./assets/font/Rajdhani-Bold.ttf');
+}
+
+:root {
+    color: yellow;
+    cursor: url($cursor-md), default;
+    cursor: url($cursor-md), pointer;
+}
+
+label {
+    cursor: url($cursor-md), auto;
+}
+
+button {
+    cursor: url($cursor-md), pointer !important;
+}
+
+body {
+    background-image: url("./assets/img/tutorial_bg2-ex.png");
+    background-repeat: repeat-y;
+}

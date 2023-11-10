@@ -1,0 +1,474 @@
+.game-container {
+    width: 100%;
+    height: 100%;
+}
+
+.button-game {
+    width: 45px;
+    height: 45px;
+    padding: 4px;
+    margin: 4px;
+    font-size: 23px;
+    font-family: Rajdhani-Medium;
+    background-color: transparent;
+    color: #DCFF5F;
+    border-radius: 0;
+    border: solid 1px rgba(0, 0, 0, 0);
+}
+
+.button-game:hover {
+    border: solid 1px #25FFFF;
+}
+
+.button-game:active {
+    color: darken(#25FFFF, 25%);
+    background-color: #25FFFF;
+    -webkit-box-shadow: 0px 0px 12px 3px rgba(37, 255, 255, 0.9);
+    -moz-box-shadow: 0px 0px 12px 3px rgba(37, 255, 255, 0.9);
+    box-shadow: 0px 0px 12px 3px rgba(37, 255, 255, 0.9);
+}
+
+.button-game:disabled {
+    opacity: unset;
+}
+
+.button-game-decorator {
+    border: solid 1px rgba(0, 0, 0, 0);
+
+}
+
+.button-game-decorator:hover {
+    border: solid 1px #25FFFF;
+}
+
+.button-game-selected {
+    color: #483a54;
+    font-family: Rajdhani-Bold;
+}
+
+.timer-container {
+    color: #DCFF5F;
+    width: 35%;
+
+    .props-timer-conatiner {
+        border-bottom: solid 1px #DCFF5F;
+        margin-bottom: 5px;
+        margin-top: 23px;
+
+        .props-span {
+            color: #DCFF5F;
+            font-size: 23%;
+        }
+    }
+
+    .time-box {
+        text-align: center;
+        width: 60px;
+    }
+
+    .title-timer {
+        font-size: 23px;
+        font-family: Rajdhani-Medium;
+    }
+
+    .counter-timer {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-family: Rajdhani-Bold;
+    }
+
+    .progress {
+        border-radius: 0;
+        border: solid 1px #DCFF5F;
+        background-color: transparent;
+        height: 8px;
+
+        .progress-bar {
+            background-color: #DCFF5F;
+            transition: width 0.1s ease;
+        }
+    }
+
+}
+
+.buffer-container {
+    margin-left: 50px;
+
+    .box {
+        width: fit-content !important;
+    }
+}
+
+.item-buffer-container {
+    background-image: url("../../../assets/img/Buffer-empty.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 32px;
+    height: 32px;
+    margin: 0 5px;
+
+    &.item-resolve {
+        background-image: unset;
+        border: solid 1px #DCFF5F;
+    }
+
+    .label-buffer {
+        padding: 1px;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        color: #DCFF5F;
+        font-family: 'Rajdhani-Medium';
+        font-size: 20px;
+    }
+}
+
+.buffer-title-container {
+    color: #DCFF5F;
+    font-size: 25px;
+    margin-bottom: 5px;
+    font-family: Rajdhani-Medium;
+
+    .label-buffer {
+        width: 30px;
+        height: 30px;
+        font-size: large;
+        color: #DCFF5F;
+    }
+}
+
+.matix-container {
+    padding: 1rem 1rem 1rem 0;
+    width: 475px;
+
+    .splash-container {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .splashWinsOrFail {
+        clip-path: polygon(2% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 2%);
+        margin: 0rem 0.8rem;
+        width: 430px;
+        height: 0px;
+        transition: height 0.5s ease 0s;
+
+        &.resolve {
+            height: 390px;
+            background-color: #23D778;
+        }
+
+        &.fail {
+            height: 390px;
+            background-color: #FF5850;
+        }
+
+        .line {
+            width: 100%;
+            border-bottom: solid 1px black;
+            padding: 0.5rem 0;
+        }
+
+        .splash-header {
+            padding: 0rem 1rem;
+            display: flex;
+            align-items: center;
+            height: 45px;
+            font-size: 23px;
+        }
+
+        .splash-body {
+            padding: 0.25rem 0.8rem;
+            font-family: Rajdhani-Bold;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%);
+
+            &.resolve {
+                border: solid 1px #23D778;
+                color: #23D778;
+                background-color: darken(#23D778, 40%);
+            }
+
+            &.fail {
+                border: solid 1px #FF5850;
+                color: #FF5850;
+                background-color: darken(#FF5850, 55%);
+            }
+
+            pre {
+                font-family: Rajdhani-SemiBold;
+                font-size: .875em;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .splash-footer {
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Rajdhani-SemiBold;
+            font-size: 1rem;
+
+            &.resolve span {
+                color: darken(#23D778, 40%);
+            }
+
+            &.fail span {
+                color: darken(#FF5850, 55%);
+            }
+        }
+    }
+
+    .button-game-exit-background {
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        margin-top: 1rem;
+        clip-path: polygon(0 0, 100% 0, 100% 74%, 91% 100%, 0 100%);
+
+        &.resolve {
+            border: solid 1px darken(#23D778, 40%);
+            background-color: darken(#23D778, 40%);
+        }
+
+        &.fail {
+            border: solid 1px darken(#FF5850, 55%);
+            background-color: darken(#FF5850, 55%);
+        }
+    }
+
+    .button-game-exit-background:hover {
+        &.resolve {
+            border: solid 1px #23D778;
+            background-color: #23D778;
+        }
+
+        &.fail {
+            border: solid 1px #FF5850;
+            background-color: #FF5850;
+        }
+    }
+
+    .button-game-exit {
+        border-radius: unset;
+        clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+        padding: 0.2rem 2rem 0.5rem 0.2rem;
+        font-family: Rajdhani-Medium;
+        font-size: 25px;
+
+        &.resolve {
+            border: solid 1px darken(#23D778, 40%);
+            color: lighten(#23D778, 35%);
+            background-color: #23D778;
+        }
+
+        &.fail {
+            border: solid 1px darken(#FF5850, 55%);
+            color: lighten(#FF5850, 20%);
+            background-color: #FF5850;
+        }
+
+    }
+
+    .button-game-exit:hover {
+        &.resolve {
+            border: solid 1px #23D778;
+            color: #23D778;
+            background-color: darken(#23D778, 40%);
+        }
+
+        &.fail {
+            border: solid 1px #FF5850;
+            color: #FF5850;
+            background-color: darken(#FF5850, 55%);
+        }
+    }
+
+    .box {
+        margin-top: 0;
+        padding: 15px 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .row-matrix {
+            height: 55px;
+        }
+    }
+
+    .code-matrix-container {
+        clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
+        background-color: #DCFF5F;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        height: 45px;
+        font-size: 23px;
+        font-family: Rajdhani-Light;
+
+        span {
+            margin-left: 15px;
+        }
+    }
+}
+
+.sequence-container {
+    padding: 1rem;
+    margin-left: 1rem;
+
+    .sequence-box-decorator {
+        clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+        background-color: #DCFF5F;
+        position: absolute;
+        width: 20px;
+        height: 45px;
+    }
+
+    .sequence-box-container {
+        position: relative;
+        background-color: #120F19;
+        clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        color: #DCFF5F;
+        height: 45px;
+        border: solid 1px #DCFF5F;
+        border-bottom: unset;
+        font-size: 23px;
+        font-family: Rajdhani-Regular;
+
+        .icon-code-sequence-game {
+            width: 27px;
+            height: 27px;
+        }
+
+        span {
+            margin-left: 0.5rem;
+        }
+    }
+
+    .label-game {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        margin: 0px 5px;
+        color: #ffffff;
+        font-size: 23px;
+        font-family: Rajdhani-Medium;
+    }
+
+    .label-game-resolve {
+        color: #DCFF5F;
+    }
+
+    .logo-code-game {
+        margin-left: 20px;
+        width: 64px;
+        height: 64px;
+    }
+
+    .box {
+        margin-top: 0;
+        padding: 10px 15px;
+    }
+
+    .code-row {
+        display: flex;
+
+        .code-result {
+            position: absolute;
+            width: 754px;
+            height: 0px;
+            transition: height 0.5s ease 0s;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 98% 100%, 0 100%);
+
+            &.resolve {
+                height: 64px;
+                background-color: #23D778;
+                color: darken(#23D778, 40%);
+            }
+
+            &.fail {
+                height: 64px;
+                background-color: #FF5850;
+                color: darken(#FF5850, 55%);
+            }
+
+            .label-game {
+                margin-left: 1rem;
+                margin-top: 0.1rem;
+
+                &.resolve {
+                    color: darken(#23D778, 40%);
+                }
+
+                &.fail {
+                    color: darken(#FF5850, 55%);
+                }
+            }
+        }
+
+        .code-challenge {
+            display: flex;
+            min-width: 350px;
+        }
+
+        .code-description {
+            display: flex;
+            position: relative;
+            z-index: 1;
+
+            &.resolve {
+                color: darken(#23D778, 40%);
+            }
+
+            &.fail {
+                color: darken(#FF5850, 55%);
+            }
+        }
+
+        .code-text {
+            color: #DCFF5F;
+            font-family: Rajdhani-Medium;
+            margin-left: 20px;
+
+            h5 {
+                color: #ffffff;
+            }
+
+            label {
+                width: 300px !important;
+            }
+
+            h5.resolve {
+                color: darken(#23D778, 40%);
+            }
+
+            h5.fail {
+                color: darken(#FF5850, 55%);
+            }
+
+            label.resolve {
+                color: darken(#23D778, 40%);
+            }
+
+            label.fail {
+                color: darken(#FF5850, 55%);
+            }
+        }
+    }
+
+}
+
+.box {
+    border: 1px solid #DCFF5F;
+    background-color: #120F19;
+}
+
+.icon-code-matrix-game {
+    width: 27px;
+    height: 27px;
+}
