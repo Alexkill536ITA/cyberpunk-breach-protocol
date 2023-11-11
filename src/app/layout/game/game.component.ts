@@ -158,6 +158,8 @@ export class GameComponent implements OnInit {
         }
       }
     });
+    let elementColHover = document.getElementById('CodeColHover');
+    elementColHover?.insertAdjacentHTML('afterbegin', `<div style="width: 40px;">&nbsp;</div>`);
     this.positionReadBuffer++;
     this.checkWins();
   }

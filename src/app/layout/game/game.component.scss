@@ -17,7 +17,13 @@
 }
 
 .button-game:hover {
-    border: solid 1px #25FFFF;
+    border: double 1px #25FFFF;
+    outline: double 1px #25FFFF;
+    outline-offset: 3px;
+    background-color: rgba(37, 255, 255, 0.2);
+    -webkit-box-shadow: 0px 0px 10px 5px rgba(37, 255, 255, 0.6);
+    -moz-box-shadow: 0px 0px 10px 5px rgba(37, 255, 255, 0.6);
+    box-shadow: 0px 0px 10px 5px rgba(37, 255, 255, 0.6);
 }
 
 .button-game:active {
@@ -32,15 +38,6 @@
     opacity: unset;
 }
 
-.button-game-decorator {
-    border: solid 1px rgba(0, 0, 0, 0);
-
-}
-
-.button-game-decorator:hover {
-    border: solid 1px #25FFFF;
-}
-
 .button-game-selected {
     color: #483a54;
     font-family: Rajdhani-Bold;
@@ -49,6 +46,7 @@
 .timer-container {
     color: #DCFF5F;
     width: 35%;
+    padding-right: 5.5rem;
 
     .props-timer-conatiner {
         border-bottom: solid 1px #DCFF5F;
@@ -144,7 +142,7 @@
 
     .splash-container {
         position: absolute;
-        z-index: 1;
+        z-index: 2;
     }
 
     .splashWinsOrFail {
@@ -295,6 +293,7 @@
 
         .row-matrix {
             height: 55px;
+            z-index: 1;
         }
     }
 
@@ -310,6 +309,36 @@
 
         span {
             margin-left: 15px;
+        }
+    }
+
+    .container-hover-line-col {
+        position: fixed;
+        width: inherit;
+        height: inherit;
+        padding: 1rem 1rem 1rem 0rem;
+    }
+
+    .hover-line {
+        display: flex;
+        justify-content: center;
+        height: 55px;
+        width: 100%;
+        padding: 0 50px;
+    }
+
+    .hover-col {
+        width: 55px;
+        height: 55px;
+    }
+
+    .hover-col .hover-line {
+        &.active {
+            background-color: rgba(170, 170, 190, 0.2);
+        }
+
+        &.hover {
+            background-color: rgba(220, 255, 95, 0.2);
         }
     }
 }
@@ -371,6 +400,7 @@
     }
 
     .box {
+        position: relative;
         margin-top: 0;
         padding: 10px 15px;
     }
@@ -461,6 +491,19 @@
         }
     }
 
+    .container-hover-code {
+        position: absolute;
+        display: flex;
+        height: 100%;
+        padding-bottom: 20px;
+    }
+
+    .hover-code {
+        width: 30px;
+        height: 100%;
+        margin: 0 5px;
+        background-color: rgba(170, 170, 190, 0.2);
+    }
 }
 
 .box {
