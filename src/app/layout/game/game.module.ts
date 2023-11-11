@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameComponent } from './game.component';
+import { ScriptAnimationsModule } from "../../modules/script-animations/script-animations.module";
 
 
 
@@ -10,6 +11,7 @@ import { GameComponent } from './game.component';
   ],
   imports: [
     CommonModule,
+    ScriptAnimationsModule
   ],
   exports: [
     GameComponent

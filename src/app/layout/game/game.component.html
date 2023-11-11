@@ -40,21 +40,8 @@
                             <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
                         </div>
                     </div>
-                    <div class="splash-body" [class]="splashWinsOrFail">
-                        <!-- TODO Creare animazione di compilamento -->
-                        <pre>
-//ROOT
-//ACCESS_REQUEST
-//ACCESS_REQUEST_SUCCESS
-//COLLECTING PACKET_1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . COMPLETE
-//COLLECTING PACKET_2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . COMPLETE
-//COLLECTING PACKET_3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . COMPLETE
-//COLLECTING PACKET_4 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . COMPLETE
-//LOGIN
-//LOGIN_SUCCESS
-//
-//UPLOAD_IN_PROGRESS
-//UPLOAD_COMPLETE!</pre>
+                    <div *ngIf="splashWinsOrFail != null" class="splash-body" [class]="splashWinsOrFail">
+                        <app-script-animations [successOrFail]="splashWinsOrFail"></app-script-animations>
                     </div>
                     <div class="splash-footer" [class]="splashWinsOrFail">
                         <span>{{splashWinsOrFailText | uppercase}}</span>

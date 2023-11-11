@@ -107,7 +107,6 @@ export class GameComponent implements OnInit {
           this.timeLeft = String(sec.toFixed(2));
           this.progresBar = (tempMax / 100) * (sec * 10);
         } else {
-          this.stopTimer();
           this.checkWins(true, 'Time out');
         }
       }, 10);
@@ -212,8 +211,13 @@ export class GameComponent implements OnInit {
 
     if (forceFail) {
       this.setFailChallenge();
-      this.splashWinsOrFail = 'fail';
-      this.splashWinsOrFailText = failText ? failText : 'Error';
+      if (sesolveRegister > 0) {
+        this.splashWinsOrFail = 'resolve';
+        this.splashWinsOrFailText = 'Uploaded demons';
+      } else {
+        this.splashWinsOrFail = 'fail';
+        this.splashWinsOrFailText = failText ? failText : 'Error';
+      }
       this.stopTimer();
       return
     }
@@ -242,7 +246,7 @@ export class GameComponent implements OnInit {
     }
   }
 
-  setFailChallenge() {
+  setFailChallenge(): void {
     this.code.filter((challenge) => {
       if (challenge.resolve != true) {
         challenge.fail = true;
