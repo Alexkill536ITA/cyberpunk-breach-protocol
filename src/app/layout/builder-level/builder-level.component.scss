@@ -1,0 +1,91 @@
+.builder-level-container {
+    height: 80vh;
+}
+
+.head-container {
+    clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
+    background-color: #DCFF5F;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    font-size: 23px;
+    font-family: Rajdhani-Light;
+
+    span {
+        margin-left: 15px;
+    }
+}
+
+.icon-code-matrix-game {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.btn {
+    border-radius: 0;
+    clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px);
+    border: solid 2px #25FFFF;
+    background-color:#120F19;
+    color: #25FFFF;
+    font-family: Rajdhani-Medium;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.btn:active {
+    background-color: #25FFFF;
+}
+
+.btn-decorator {
+    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+    transition: background-color .15s ease-in-out;
+    background-color: #25FFFF;
+}
+
+.btn-decorator:active {
+    transition: background-color .15s ease-in-out;
+    background-color: #DCFF5F;
+
+    &.main-menu {
+        background-color:#120F19;
+    }
+}
+
+.bi {
+    vertical-align: -0.25rem;
+    font-style: normal;
+}
+
+.btn-main-menu {
+    padding: 0.2rem 1.2rem;
+}
+
+.p-button-text {
+    color: #25FFFF;
+}
+
+.p-button-text:focus {
+    border-color: #25FFFF;
+    box-shadow: 0 0 0 1px #25FFFF;
+}
+
+:host ::ng-deep .p-paginator {
+    border: 1px solid #DCFF5F;
+    background-color: #120F19;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+    font-family: Rajdhani-Medium;
+    color: #DCFF5F;
+    padding: 0.5rem 0.5rem;
+    font-size: 1.3rem;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+    font-family: Rajdhani-Medium;
+    font-size: 1.2rem;
+    color: #DCFF5F;
+    padding: 0.5rem 0.5rem;
+}

@@ -14,11 +14,11 @@ export interface Challenge {
 }
 
 export interface Decorator {
-    logo: string,
-    logoResolve: string,
-    logofail: string,
-    title: string,
-    description: string
+    logo?: string,
+    logoResolve?: string,
+    logofail?: string,
+    title?: string,
+    description?: string
 }
 
 export enum TypeDecorator {
@@ -45,6 +45,8 @@ export enum TypeDecorator {
 }
 
 export interface Level {
+    id: string,
+    name: string,
     timeLeft: string,
     bufferSize: number,
     matrix: Array<Matrix[]>,

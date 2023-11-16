@@ -69,7 +69,7 @@ export class MatrixLevelGeneratorService {
     return null;
   }
 
-  builderDecorator(typeDecoratorSlect: TypeDecorator): Decorator {
+  builderDecorator(typeDecoratorSlect: TypeDecorator | string): Decorator {
     switch (typeDecoratorSlect) {
       case TypeDecorator.DATAMINE_V1:
         return {
@@ -97,9 +97,9 @@ export class MatrixLevelGeneratorService {
         }
       case TypeDecorator.ICEPICK_HEAD:
         return {
-          logo: "assets/img/Icepick-head.png",
-          logoResolve: "assets/img/Icepick-head-resolve.png",
-          logofail: "assets/img/Icepick-head-fail.png",
+          logo: "assets/img/Icepick-Head.png",
+          logoResolve: "assets/img/Icepick-Head-resolve.png",
+          logofail: "assets/img/Icepick-Head-fail.png",
           title: "ICEPICK",
           description: "Bypass cyberware ICE"
         }
@@ -113,9 +113,9 @@ export class MatrixLevelGeneratorService {
         }
       case TypeDecorator.ICEPICK_HAND:
         return {
-          logo: "assets/img/Icepick-hand.png",
-          logoResolve: "assets/img/Icepick-hand-resolve.png",
-          logofail: "assets/img/Icepick-hand-fail.png",
+          logo: "assets/img/Icepick-Hand.png",
+          logoResolve: "assets/img/Icepick-Hand-resolve.png",
+          logofail: "assets/img/Icepick-Hand-fail.png",
           title: "ICEPICK",
           description: "Bypass ICE"
         }
@@ -161,17 +161,17 @@ export class MatrixLevelGeneratorService {
         }
       case TypeDecorator.MAINIG_v1:
         return {
-          logo: "assets/img/Mainig_1.png",
-          logoResolve: "assets/img/Mainig_1-resolve.png",
-          logofail: "assets/img/Mainig_1-fail.png",
+          logo: "assets/img/Mainig-1.png",
+          logoResolve: "assets/img/Mainig-1-resolve.png",
+          logofail: "assets/img/Mainig-1-fail.png",
           title: "MAINIG V1",
           description: "Mainig data of prgrams"
         }
       case TypeDecorator.MAINIG_v2:
         return {
-          logo: "assets/img/Mainig_2.png",
-          logoResolve: "assets/img/Mainig_2-resolve.png",
-          logofail: "assets/img/Mainig_2-fail.png",
+          logo: "assets/img/Mainig-2.png",
+          logoResolve: "assets/img/Mainig-2-resolve.png",
+          logofail: "assets/img/Mainig-2-fail.png",
           title: "MAINIG V2",
           description: "Mainig data of prgrams"
         }
@@ -185,7 +185,7 @@ export class MatrixLevelGeneratorService {
         }
       case TypeDecorator.TURRET_SHORT_CIRCUIT:
         return {
-          logo: "ssets/img/Turret_Short_Circuit.png",
+          logo: "assets/img/Turret_Short_Circuit.png",
           logoResolve: "assets/img/Turret_Short_Circuit-resolve.png",
           logofail: "assets/img/Turret_Short_Circuit-fail.png",
           title: "TURRET SHORT CIRCUIT",
@@ -248,6 +248,8 @@ export class MatrixLevelGeneratorService {
 
   builderLevel(timeLeft: string, bufferSize: number, matrixSize: number, code: Challenge[] | Challenge): Level {
     return {
+      id: 'autoGen',
+      name: 'autoGen',
       timeLeft: timeLeft,
       bufferSize: bufferSize,
       matrix: this.matrixGen(matrixSize),

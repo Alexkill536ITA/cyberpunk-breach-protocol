@@ -1,0 +1,29 @@
+@import "../../../styles/variables.scss";
+
+.img-container {
+    width: 100px;
+    height: 100px;
+    border: solid 1px $yello-color;
+}
+
+.challenge-form {
+    border-bottom: solid 2px $yello-color;
+    margin-bottom: 1rem;
+}
+
+.code-item {
+    font-size: 1.5rem;
+    font-family: Rajdhani-Bold;
+    margin: 0rem 0.5rem;
+}
+
+.row-code-decorator {
+    background-color: $yello-color;
+}
+
+.row-code {
+    height: 100%;
+    width: 100%;
+    background-color: $black-color;
+    border: solid 2px $yello-color;
+}

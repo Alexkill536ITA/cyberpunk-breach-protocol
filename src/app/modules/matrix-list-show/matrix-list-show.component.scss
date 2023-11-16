@@ -1,0 +1,67 @@
+.box-matrix{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.matrix-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.matrix-item{
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    margin: 0.2rem;
+    font-size: 1.5rem;
+    font-family: Rajdhani-Medium;
+    background-color: transparent;
+    color: #DCFF5F;
+    border: solid 1px rgba(0, 0, 0, 0);
+}
+
+.code-row {
+    display: flex;
+
+    .label-game {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        margin: 0px 5px;
+        color: #ffffff;
+        font-size: 23px;
+        font-family: Rajdhani-Medium;
+    }
+
+    .code-challenge {
+        display: flex;
+        min-width: 50%;
+    }
+
+    .code-description {
+        width: 50%;
+        display: flex;
+    }
+
+    .code-text {
+        color: #DCFF5F;
+        font-family: Rajdhani-Medium;
+        margin-left: 20px;
+
+        h5 {
+            color: #ffffff;
+        }
+
+        label {
+            width: 300px !important;
+        }
+    }
+
+    .logo-code-game {
+        width: 64px;
+        height: 64px;
+    }
+}

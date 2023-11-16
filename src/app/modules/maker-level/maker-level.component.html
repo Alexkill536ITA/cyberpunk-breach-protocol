@@ -1,0 +1,214 @@
+<div class="modal-header polygon-tl-corner">
+    <h5 class="modal-title">Modal title</h5>
+    <div class="polygon-tl-corner-decorator btn-custom-decorator">
+        <button type="button" class="btn btn-custom polygon-tl-corner btn-icon" title="Close Editor"
+            (click)="modal.dismiss('Cross click')">
+            <i class="bi bi-x-lg mt-1"></i>
+        </button>
+    </div>
+</div>
+<div class="modal-body">
+    <form class="d-flex flex-column justify-content-center align-items-center" [formGroup]="levelFrom">
+        <div class="row w-100 mb-3">
+            <label class="col-6">Name level *</label>
+            <div class="col-6">
+                <div class="w-100 custom-input-decorator"
+                    [class]="levelFrom.get('name')?.invalid && (levelFrom.get('name')?.dirty || levelFrom.get('name')?.touched) ? 'invalid':''">
+                    <input class="w-100 custom-input" type="text" formControlName="name">
+                </div>
+            </div>
+        </div>
+        <div class="row w-100 mb-3">
+            <label class="col-6">Set Time left</label>
+            <div class="col-6 position-relative">
+                <div class="slider-text polygon-br-corner-decorator">
+                    <span>{{levelFrom.get('timeLeft')?.value}}s</span>
+                </div>
+                <input class="custom-input slider polygon-br-corner" type="range" min="10" max="120" value="30"
+                    step="0.05" formControlName="timeLeft">
+            </div>
+        </div>
+        <div class="row w-100 mb-3">
+            <label class="col-6">Set Buffer size</label>
+            <div class="col-6 position-relative">
+                <div class="slider-text polygon-br-corner-decorator">
+                    <span>{{levelFrom.get('bufferSize')?.value}}</span>
+                </div>
+                <input class="w-100 custom-input slider polygon-br-corner" type="range" min="4" max="16" value="4"
+                    formControlName="bufferSize">
+            </div>
+        </div>
+        <div class="row w-100 mb-3">
+            <h4>Matrix</h4>
+            <div class="col-6">
+                <div class="row">
+                    <label class="col-6">Size Matrix *</label>
+                    <div class="col-6 d-flex">
+                        <div class="w-100 custom-input-decorator polygon-bl-corner-decorator"
+                            [class]="levelFrom.get('matrix')?.invalid && (levelFrom.get('matrix')?.dirty || levelFrom.get('matrix')?.touched) ? 'invalid':''">
+                            <select id="matrixSize" class="custom-input form-select w-100 polygon-bl-corner"
+                                (change)="setSizeMatrix()">
+                                <option value="4" selected>4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        &nbsp;
+                        <div class="w-100">
+                            <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator">
+                                <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner"
+                                    (click)="generateMatrix()">Generate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 d-flex">
+                <div class="row-code-decorator w-100 polygon-br-corner-decorator">
+                    <div class="row-code polygon-br-corner text-center">
+                        <div class="d-flex row-matrix justify-content-center"
+                            *ngFor="let row of matrixPreviw; let y = index">
+                            <div *ngFor="let col of row; let x = index">
+                                <label class="code-item">
+                                    {{col.value|uppercase}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row w-100">
+            <h4>Challenge</h4>
+            <ng-container formArrayName="code">
+                <ng-container *ngFor="let challenge of code.controls; let i = index">
+                    <div class="challenge-form" [formArrayName]="i">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col-6">Code *</label>
+                                    <div class="col-6 d-flex">
+                                        <div class="w-100 custom-input-decorator polygon-bl-corner-decorator">
+                                            <select id="codeSize{{i}}"
+                                                class="custom-input form-select w-100 polygon-bl-corner"
+                                                (change)="setSizeCode('codeSize'+i)">
+                                                <option value="2" selected>2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                        &nbsp;
+                                        <div class="w-100">
+                                            <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator"
+                                                [class]="challenge.get('row')?.invalid && (challenge.get('row')?.dirty || challenge.get('row')?.touched) ? 'invalid':''">
+                                                <button type="button"
+                                                    class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner"
+                                                    (click)="generateCode(challenge.get('row'))">Generate</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex">
+                                <div class="row-code-decorator w-100 polygon-br-corner-decorator">
+                                    <div class="row-code polygon-br-corner text-center">
+                                        <label class=" code-item" *ngFor=" let item of challenge.get('row')?.value">
+                                            {{item.value|uppercase}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div formGroupName="decorator">
+                            <div class="row mb-3">
+                                <label class="col-6">Title *</label>
+                                <div class="col">
+                                    <div class="w-100 custom-input-decorator"
+                                        [class]="challenge.get('decorator')?.get('title')?.invalid && (challenge.get('decorator')?.get('title')?.dirty || challenge.get('decorator')?.get('title')?.touched) ? 'invalid':''">
+                                        <input class="w-100 custom-input" type="text" formControlName="title"
+                                            [value]="challenge.get('decorator')?.value['title']">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-6">Description *</label>
+                                <div class="col">
+                                    <div class="w-100 custom-input-decorator"
+                                        [class]="challenge.get('decorator')?.get('description')?.invalid && (challenge.get('decorator')?.get('description')?.dirty || challenge.get('decorator')?.get('description')?.touched) ? 'invalid':''">
+                                        <input class="w-100 custom-input" type="text" formControlName="description"
+                                            [value]="challenge.get('decorator')?.value['description']">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-6 align-self-center">Logo</label>
+                                <div class="col d-flex">
+                                    <div>
+                                        <img class="img-container" [src]="challenge.get('decorator')?.value['logo']">
+                                    </div>
+                                    <div class="w-100 d-flex align-items-center ms-2">
+                                        <div class="w-100 custom-input-decorator">
+                                            <select [id]="'selectLogo'+i" class="custom-input form-select w-100"
+                                                (change)="undateDecorator('selectLogo'+i, challenge.get('decorator'))">
+                                                <option value="DATAMINE_V1" selected>DATAMINE_V1</option>
+                                                <option value="DATAMINE_V2">DATAMINE_V2</option>
+                                                <option value="DATAMINE_V3">DATAMINE_V3</option>
+                                                <option value="ICEPICK_HAND">ICEPICK_HAND</option>
+                                                <option value="ICEPICK_PC">ICEPICK_PC</option>
+                                                <option value="ICEPICK_HEAD">ICEPICK_HEAD</option>
+                                                <option value="CAMERE_CONTROL">CAMERE_CONTROL</option>
+                                                <option value="CAMERE_OFF">CAMERE_OFF</option>
+                                                <option value="MASS_VULNERABILITY">MASS_VULNERABILITY</option>
+                                                <option value="MASS_COLLAPSE">MASS_COLLAPSE</option>
+                                                <option value="MALWARE">MALWARE</option>
+                                                <option value="MAINIG_v1">MAINIG_v1</option>
+                                                <option value="MAINIG_v2">MAINIG_v2</option>
+                                                <option value="CODING">CODING</option>
+                                                <option value="TURRET_SHORT_CIRCUIT">TURRET_SHORT_CIRCUIT</option>
+                                                <option value="TURRET_OFF">TURRET_OFF</option>
+                                                <option value="TURRET_CONTROL">TURRET_CONTROL</option>
+                                                <option value="REBOOT_OPTICAL">REBOOT_OPTICAL</option>
+                                                <option value="JAMMING">JAMMING</option>
+                                                <option value="CUSTOM">CUSTOM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-end">
+                            <div class="btn-custom-decorator yello-styles polygon-bl-corner-decorator">
+                                <button type="button" class="w-100 btn btn-custom yello-styles polygon-bl-corner"
+                                    (click)="clearChallenge('selectLogo'+i, challenge)">Clear</button>
+                            </div>
+                            &nbsp;
+                            <div class="btn-custom-decorator yello-styles polygon-br-corner-decorator">
+                                <button type="button" class="w-100 btn btn-custom yello-styles polygon-br-corner"
+                                    (click)="removeChallenge(i)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <div class="w-100">
+                <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator">
+                    <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner"
+                        (click)="addChallenge()">add</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- <pre>{{levelFrom.getRawValue() | json}}</pre> -->
+</div>
+<div class="modal-footer polygon-br-corner">
+    <div class="btn-custom-decorator">
+        <button type="button" class="btn btn-custom" (click)="modal.close('Close click')">Close</button>
+    </div>
+    <div class="polygon-br-corner-decorator btn-custom-decorator" [class]="levelFrom.invalid? 'disabled': ''">
+        <button type="button" class="btn btn-custom polygon-br-corner" [disabled]="levelFrom.invalid" (click)="submit()">
+            Save
+        </button>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<p-table [value]="value" [tableStyle]="{'max-height':'10rem' }">
+    <ng-template pTemplate="header">
+        <tr class="box">
+            <th class="box">Matrix</th>
+            <th class="box">Code</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-level>
+        <tr>
+            <td class="box">
+                <div class="matrix-container" *ngFor="let row of level.matrix; let y = index">
+                    <div *ngFor="let col of row; let x = index">
+                        <span class="matrix-item">{{col.value |uppercase}}</span>
+                    </div>
+                </div>
+            </td>
+            <td class="box">
+                <div class="code-row" *ngFor="let item of level.code">
+                    <div class="code-challenge">
+                        <div *ngFor="let col of item.row">
+                            <label class="label-game">
+                                {{col.value|uppercase}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="code-description">
+                        <img [src]="item.decorator.logo" class="logo-code-game">
+                        <div class="code-text">
+                            <h5>{{item.decorator.title}}</h5>
+                            <label>{{item.decorator.description}}</label>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="8">empty</td>
+        </tr>
+    </ng-template>
+</p-table>
