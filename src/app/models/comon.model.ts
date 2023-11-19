@@ -1,15 +1,15 @@
 export interface Matrix {
-    value: string | null;
-    select: boolean | null;
-    disabled: boolean | null;
+    value: string;
+    select: boolean;
+    disabled: boolean;
 }
 
 export interface Challenge {
-    id: string | null;
-    row: any[] | null;
-    read: number | null;
-    resolve: boolean | null;
-    fail: boolean | null;
+    id: string;
+    row: any[];
+    read: number;
+    resolve: boolean;
+    fail: boolean;
     decorator: Decorator;
 }
 
@@ -50,5 +50,5 @@ export interface Level {
     timeLeft: string,
     bufferSize: number,
     matrix: Array<Matrix[]>,
-    code: Challenge[] | Challenge
+    code: Challenge[]
 }

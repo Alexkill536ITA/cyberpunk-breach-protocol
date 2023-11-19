@@ -1,3 +1,27 @@
+@import "../../../styles/variables.scss";
+
+.root-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+}
+
+.container-section {
+    width: 75%;
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+    .container-section {
+        width: 100%;
+    }
+}
+
 .game-container {
     width: 100%;
     height: 100%;
@@ -11,14 +35,14 @@
     font-size: 23px;
     font-family: Rajdhani-Medium;
     background-color: transparent;
-    color: #DCFF5F;
+    color: $yello-color;
     border-radius: 0;
     border: solid 1px rgba(0, 0, 0, 0);
 }
 
 .button-game:hover {
-    border: double 1px #25FFFF;
-    outline: double 1px #25FFFF;
+    border: double 1px $cian-color;
+    outline: double 1px $cian-color;
     outline-offset: 3px;
     background-color: rgba(37, 255, 255, 0.2);
     -webkit-box-shadow: 0px 0px 10px 5px rgba(37, 255, 255, 0.6);
@@ -27,8 +51,8 @@
 }
 
 .button-game:active {
-    color: darken(#25FFFF, 25%);
-    background-color: #25FFFF;
+    color: darken($cian-color, 25%);
+    background-color: $cian-color;
     -webkit-box-shadow: 0px 0px 12px 3px rgba(37, 255, 255, 0.9);
     -moz-box-shadow: 0px 0px 12px 3px rgba(37, 255, 255, 0.9);
     box-shadow: 0px 0px 12px 3px rgba(37, 255, 255, 0.9);
@@ -44,17 +68,16 @@
 }
 
 .timer-container {
-    color: #DCFF5F;
-    width: 35%;
-    padding-right: 5.5rem;
+    color: $yello-color;
+    width: 85%;
 
     .props-timer-conatiner {
-        border-bottom: solid 1px #DCFF5F;
+        border-bottom: solid 1px $yello-color;
         margin-bottom: 5px;
         margin-top: 23px;
 
         .props-span {
-            color: #DCFF5F;
+            color: $yello-color;
             font-size: 23%;
         }
     }
@@ -78,20 +101,25 @@
 
     .progress {
         border-radius: 0;
-        border: solid 1px #DCFF5F;
+        border: solid 1px $yello-color;
         background-color: transparent;
         height: 8px;
 
         .progress-bar {
-            background-color: #DCFF5F;
+            background-color: $yello-color;
             transition: width 0.1s ease;
         }
     }
 
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+        .title-timer {
+            font-size: 18px;
+        }
+    }
 }
 
 .buffer-container {
-    margin-left: 50px;
+    margin-left: 1rem;
 
     .box {
         width: fit-content !important;
@@ -108,7 +136,7 @@
 
     &.item-resolve {
         background-image: unset;
-        border: solid 1px #DCFF5F;
+        border: solid 1px $yello-color;
     }
 
     .label-buffer {
@@ -116,14 +144,14 @@
         text-align: center;
         width: 30px;
         height: 30px;
-        color: #DCFF5F;
+        color: $yello-color;
         font-family: 'Rajdhani-Medium';
         font-size: 20px;
     }
 }
 
 .buffer-title-container {
-    color: #DCFF5F;
+    color: $yello-color;
     font-size: 25px;
     margin-bottom: 5px;
     font-family: Rajdhani-Medium;
@@ -132,13 +160,16 @@
         width: 30px;
         height: 30px;
         font-size: large;
-        color: #DCFF5F;
+        color: $yello-color;
     }
 }
 
 .matix-container {
-    padding: 1rem 1rem 1rem 0;
-    width: 475px;
+    .splash-container-justify {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
 
     .splash-container {
         position: absolute;
@@ -147,19 +178,20 @@
 
     .splashWinsOrFail {
         clip-path: polygon(2% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 2%);
+        width: fit-content;
+        min-width: 430px;
         margin: 0rem 0.8rem;
-        width: 430px;
         height: 0px;
         transition: height 0.5s ease 0s;
 
         &.resolve {
             height: 390px;
-            background-color: #23D778;
+            background-color: $green-color;
         }
 
         &.fail {
             height: 390px;
-            background-color: #FF5850;
+            background-color: $red-color;
         }
 
         .line {
@@ -182,15 +214,15 @@
             clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%);
 
             &.resolve {
-                border: solid 1px #23D778;
-                color: #23D778;
-                background-color: darken(#23D778, 40%);
+                border: solid 1px $green-color;
+                color: $green-color;
+                background-color: darken($green-color, 40%);
             }
 
             &.fail {
-                border: solid 1px #FF5850;
-                color: #FF5850;
-                background-color: darken(#FF5850, 55%);
+                border: solid 1px $red-color;
+                color: $red-color;
+                background-color: darken($red-color, 55%);
             }
         }
 
@@ -203,42 +235,39 @@
             font-size: 1rem;
 
             &.resolve span {
-                color: darken(#23D778, 40%);
+                color: darken($green-color, 40%);
             }
 
             &.fail span {
-                color: darken(#FF5850, 55%);
+                color: darken($red-color, 55%);
             }
         }
     }
 
     .button-game-exit-background {
-        position: absolute;
-        right: 0;
-        z-index: 1;
         margin-top: 1rem;
         clip-path: polygon(0 0, 100% 0, 100% 74%, 91% 100%, 0 100%);
 
         &.resolve {
-            border: solid 1px darken(#23D778, 40%);
-            background-color: darken(#23D778, 40%);
+            border: solid 1px darken($green-color, 40%);
+            background-color: darken($green-color, 40%);
         }
 
         &.fail {
-            border: solid 1px darken(#FF5850, 55%);
-            background-color: darken(#FF5850, 55%);
+            border: solid 1px darken($red-color, 55%);
+            background-color: darken($red-color, 55%);
         }
     }
 
     .button-game-exit-background:hover {
         &.resolve {
-            border: solid 1px #23D778;
-            background-color: #23D778;
+            border: solid 1px $green-color;
+            background-color: $green-color;
         }
 
         &.fail {
-            border: solid 1px #FF5850;
-            background-color: #FF5850;
+            border: solid 1px $red-color;
+            background-color: $red-color;
         }
     }
 
@@ -250,30 +279,30 @@
         font-size: 25px;
 
         &.resolve {
-            border: solid 1px darken(#23D778, 40%);
-            color: lighten(#23D778, 35%);
-            background-color: #23D778;
+            border: solid 1px darken($green-color, 40%);
+            color: lighten($green-color, 35%);
+            background-color: $green-color;
         }
 
         &.fail {
-            border: solid 1px darken(#FF5850, 55%);
-            color: lighten(#FF5850, 20%);
-            background-color: #FF5850;
+            border: solid 1px darken($red-color, 55%);
+            color: lighten($red-color, 20%);
+            background-color: $red-color;
         }
 
     }
 
     .button-game-exit:hover {
         &.resolve {
-            border: solid 1px #23D778;
-            color: #23D778;
-            background-color: darken(#23D778, 40%);
+            border: solid 1px $green-color;
+            color: $green-color;
+            background-color: darken($green-color, 40%);
         }
 
         &.fail {
-            border: solid 1px #FF5850;
-            color: #FF5850;
-            background-color: darken(#FF5850, 55%);
+            border: solid 1px $red-color;
+            color: $red-color;
+            background-color: darken($red-color, 55%);
         }
     }
 
@@ -293,7 +322,7 @@
 
     .code-matrix-container {
         clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
-        background-color: #DCFF5F;
+        background-color: $yello-color;
         padding: 0.5rem 1rem;
         display: flex;
         align-items: center;
@@ -335,15 +364,30 @@
             background-color: rgba(220, 255, 95, 0.2);
         }
     }
+
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+        .splash-container-justify {
+            display: block;
+        }
+
+        .splashWinsOrFail {
+            &.resolve {
+                height: 360px;
+            }
+
+            &.fail {
+                height: 360px;
+            }
+
+        }
+
+    }
 }
 
 .sequence-container {
-    padding: 1rem;
-    margin-left: 1rem;
-
     .sequence-box-decorator {
         clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
-        background-color: #DCFF5F;
+        background-color: $yello-color;
         position: absolute;
         width: 20px;
         height: 45px;
@@ -356,9 +400,9 @@
         padding: 15px 20px;
         display: flex;
         align-items: center;
-        color: #DCFF5F;
+        color: $yello-color;
         height: 45px;
-        border: solid 1px #DCFF5F;
+        border: solid 1px $yello-color;
         border-bottom: unset;
         font-size: 23px;
         font-family: Rajdhani-Regular;
@@ -384,11 +428,10 @@
     }
 
     .label-game-resolve {
-        color: #DCFF5F;
+        color: $yello-color;
     }
 
     .logo-code-game {
-        margin-left: 20px;
         width: 64px;
         height: 64px;
     }
@@ -404,21 +447,22 @@
 
         .code-result {
             position: absolute;
-            width: 754px;
+            width: calc(100% - 1.4rem);
+            margin-left: 0.5rem;
             height: 0px;
             transition: height 0.5s ease 0s;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 98% 100%, 0 100%);
 
             &.resolve {
                 height: 64px;
-                background-color: #23D778;
-                color: darken(#23D778, 40%);
+                background-color: $green-color;
+                color: darken($green-color, 40%);
             }
 
             &.fail {
                 height: 64px;
-                background-color: #FF5850;
-                color: darken(#FF5850, 55%);
+                background-color: $red-color;
+                color: darken($red-color, 55%);
             }
 
             .label-game {
@@ -426,18 +470,17 @@
                 margin-top: 0.1rem;
 
                 &.resolve {
-                    color: darken(#23D778, 40%);
+                    color: darken($green-color, 40%);
                 }
 
                 &.fail {
-                    color: darken(#FF5850, 55%);
+                    color: darken($red-color, 55%);
                 }
             }
         }
 
         .code-challenge {
             display: flex;
-            min-width: 350px;
         }
 
         .code-description {
@@ -446,41 +489,42 @@
             z-index: 1;
 
             &.resolve {
-                color: darken(#23D778, 40%);
+                color: darken($green-color, 40%);
             }
 
             &.fail {
-                color: darken(#FF5850, 55%);
+                color: darken($red-color, 55%);
             }
         }
 
         .code-text {
-            color: #DCFF5F;
+            color: $yello-color;
             font-family: Rajdhani-Medium;
-            margin-left: 20px;
+            margin-left: 1rem;
+            width: 100%;
 
             h5 {
                 color: #ffffff;
             }
 
             label {
-                width: 300px !important;
+                max-width: 300px !important;
             }
 
             h5.resolve {
-                color: darken(#23D778, 40%);
+                color: darken($green-color, 40%);
             }
 
             h5.fail {
-                color: darken(#FF5850, 55%);
+                color: darken($red-color, 55%);
             }
 
             label.resolve {
-                color: darken(#23D778, 40%);
+                color: darken($green-color, 40%);
             }
 
             label.fail {
-                color: darken(#FF5850, 55%);
+                color: darken($red-color, 55%);
             }
         }
     }
@@ -497,6 +541,33 @@
         height: 100%;
         margin: 0 5px;
         background-color: rgba(170, 170, 190, 0.2);
+    }
+
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+        .label-game {
+            margin: 0px;
+            font-size: 20px;
+        }
+
+        .hover-code {
+            margin: 0px;
+        }
+
+        .code-title {
+            font-size: 18px;
+        }
+
+        .code-label {
+            font-size: 16px;
+        }
+    }
+}
+
+:host ::ng-deep .space-code {
+    width: 40px;
+
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+        width: 30px;
     }
 }
 

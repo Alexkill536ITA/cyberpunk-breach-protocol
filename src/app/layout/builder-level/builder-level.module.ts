@@ -5,6 +5,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from "primeng/button";
 import { MakerLevelModule } from "../../modules/maker-level/maker-level.module";
 import { MatrixListShowModule } from "../../modules/matrix-list-show/matrix-list-show.module";
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { MatrixListShowModule } from "../../modules/matrix-list-show/matrix-list
     TableModule,
     ButtonModule,
     MatrixListShowModule,
-    MakerLevelModule
+    MakerLevelModule,
+    RouterModule
   ],
   exports: [
     BuilderLevelComponent

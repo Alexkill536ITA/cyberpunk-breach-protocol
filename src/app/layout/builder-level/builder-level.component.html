@@ -1,80 +1,85 @@
-<div class="head-container">
-    <div>
-        <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
-        <span>LEVELS</span>
+<div class="root-container">
+    <div class="container-section">
+        <div class="head-container">
+            <div>
+                <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
+                <span>LEVELS</span>
+            </div>
+            <div class="btn-decorator main-menu">
+                <button type="button" class="btn btn-main-menu" (click)="openModalNewOrEdit()">
+                    <i class="bi bi-plus-circle"> New level</i>
+                </button>
+            </div>
+            <div class="btn-decorator main-menu">
+                <button type="button" class="btn btn-main-menu" [routerLink]="'/'" [routerLinkActive]="'active'">Main Menu</button>
+            </div>
+        </div>
+        <div class="builder-level-container box">
+            <p-table [value]="levels" dataKey="name" [scrollable]="true" scrollHeight="flex" [rows]="12"
+                [paginator]="true" [tableStyle]="{ 'min-width': '60rem' }">
+
+                <ng-template pTemplate="header">
+                    <tr class="box">
+                        <th style="width: 5%; background-color: transparent;"></th>
+                        <th style="width: 20%; background-color: transparent;">Name</th>
+                        <th style="width: 20%; background-color: transparent;">Time left</th>
+                        <th style="width: 20%; background-color: transparent;">Buffer size</th>
+                        <th style="width: 20%; background-color: transparent; text-align: end;">Action</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-level let-expanded="expanded">
+                    <tr class="box">
+                        <td>
+                            <button type="button" pButton [pRowToggler]="level" class="p-button-text"
+                                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                        </td>
+                        <td>
+                            {{ level.name }}
+                        </td>
+                        <td>
+                            {{ level.timeLeft }}
+                        </td>
+                        <td>
+                            {{ level.bufferSize }}
+                        </td>
+                        <td class="d-flex justify-content-end">
+                            <div class="btn-decorator" title="Play Level">
+                                <button type="button" class="btn">
+                                    <i class="bi bi-play"></i>
+                                </button>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div class="btn-decorator" title="Edit">
+                                <button type="button" class="btn">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div class="btn-decorator" title="Delete">
+                                <button type="button" class="btn">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="rowexpansion" let-level>
+                    <tr>
+                        <td colspan="5">
+                            <app-matrix-list-show
+                                [value]="[{matrix: level.matrix, code: level.code}]"></app-matrix-list-show>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">empty</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </div>
-    <div class="btn-decorator main-menu">
-        <button type="button" class="btn btn-main-menu" (click)="openModalNewOrEdit()">
-            <i class="bi bi-plus-circle"> New level</i>
-        </button>
-    </div>
-    <div class="btn-decorator main-menu">
-        <button type="button" class="btn btn-main-menu">Main Menu</button>
-    </div>
-</div>
-<div class="builder-level-container box">
-    <p-table [value]="levels" dataKey="name" [scrollable]="true" scrollHeight="flex" [rows]="12" [paginator]="true"
-        [tableStyle]="{ 'min-width': '70rem' }">
-
-        <ng-template pTemplate="header">
-            <tr class="box">
-                <th style="width: 5%; background-color: transparent;"></th>
-                <th style="width: 20%; background-color: transparent;">Name</th>
-                <th style="width: 20%; background-color: transparent;">Time left</th>
-                <th style="width: 20%; background-color: transparent;">Buffer size</th>
-                <th style="width: 20%; background-color: transparent; text-align: end;">Action</th>
-            </tr>
-        </ng-template>
-
-        <ng-template pTemplate="body" let-level let-expanded="expanded">
-            <tr class="box">
-                <td>
-                    <button type="button" pButton [pRowToggler]="level" class="p-button-text"
-                        [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                </td>
-                <td>
-                    {{ level.name }}
-                </td>
-                <td>
-                    {{ level.timeLeft }}
-                </td>
-                <td>
-                    {{ level.bufferSize }}
-                </td>
-                <td class="d-flex justify-content-end">
-                    <div class="btn-decorator" title="Play Level">
-                        <button type="button" class="btn">
-                            <i class="bi bi-play"></i>
-                        </button>
-                    </div>
-                    &nbsp;&nbsp;
-                    <div class="btn-decorator" title="Edit">
-                        <button type="button" class="btn">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                    &nbsp;&nbsp;
-                    <div class="btn-decorator" title="Delete">
-                        <button type="button" class="btn">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-
-        <ng-template pTemplate="rowexpansion" let-level>
-            <tr>
-                <td colspan="5">
-                    <app-matrix-list-show [value]="[{matrix: level.matrix, code: level.code}]"></app-matrix-list-show>
-                </td>
-            </tr>
-        </ng-template>
-
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="8">empty</td>
-            </tr>
-        </ng-template>
-    </p-table>
 </div>

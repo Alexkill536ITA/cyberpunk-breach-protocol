@@ -1,10 +1,34 @@
+@import "../../../styles/variables.scss";
+
+.root-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+}
+
+.container-section {
+    width: 75%;
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+    .container-section {
+        width: 100%;
+    }
+}
+
 .builder-level-container {
     height: 80vh;
 }
 
 .head-container {
     clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
-    background-color: #DCFF5F;
+    background-color: $yello-color;
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
@@ -26,30 +50,30 @@
 .btn {
     border-radius: 0;
     clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px);
-    border: solid 2px #25FFFF;
-    background-color:#120F19;
-    color: #25FFFF;
+    border: solid 2px $cian-color;
+    background-color:$black-color;
+    color: $cian-color;
     font-family: Rajdhani-Medium;
     font-size: 1.2rem;
     text-align: center;
 }
 
 .btn:active {
-    background-color: #25FFFF;
+    background-color: $cian-color;
 }
 
 .btn-decorator {
     clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
     transition: background-color .15s ease-in-out;
-    background-color: #25FFFF;
+    background-color: $cian-color;
 }
 
 .btn-decorator:active {
     transition: background-color .15s ease-in-out;
-    background-color: #DCFF5F;
+    background-color: $yello-color;
 
     &.main-menu {
-        background-color:#120F19;
+        background-color:$black-color;
     }
 }
 
@@ -63,22 +87,22 @@
 }
 
 .p-button-text {
-    color: #25FFFF;
+    color: $cian-color;
 }
 
 .p-button-text:focus {
-    border-color: #25FFFF;
-    box-shadow: 0 0 0 1px #25FFFF;
+    border-color: $cian-color;
+    box-shadow: 0 0 0 1px $cian-color;
 }
 
 :host ::ng-deep .p-paginator {
-    border: 1px solid #DCFF5F;
-    background-color: #120F19;
+    border: 1px solid $yello-color;
+    background-color: $black-color;
 }
 
 :host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
     font-family: Rajdhani-Medium;
-    color: #DCFF5F;
+    color: $yello-color;
     padding: 0.5rem 0.5rem;
     font-size: 1.3rem;
 }
@@ -86,6 +110,6 @@
 :host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
     font-family: Rajdhani-Medium;
     font-size: 1.2rem;
-    color: #DCFF5F;
+    color: $yello-color;
     padding: 0.5rem 0.5rem;
 }

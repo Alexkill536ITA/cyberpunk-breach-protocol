@@ -35,6 +35,11 @@ $cursor-xl: './assets/img/Cursor-cy.png';
     src: url('./assets/font/Rajdhani-Bold.ttf');
 }
 
+@font-face {
+    font-family: 'Cyberpunk';
+    src: url('./assets/font/Cyberpunk.ttf');
+}
+
 :root {
     color: yellow;
     cursor: url($cursor-md), default;

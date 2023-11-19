@@ -1,118 +1,158 @@
-<div class="game-container p-3">
-    <div class="d-flex w-100">
-        <div class="timer-container">
-            <div class="props-timer-conatiner">
-                <span class="props-span">
-                    ONLY CC35 CERTIFIED AND DHSF 5TH CLASS OFFICERS ARE ALLOWED TO MANIPULATE. ACCESS OR DISABLE THIS
-                    DEVICE.
-                </span>
-            </div>
-            <div class="counter-timer">
-                <span class="title-timer">BREACH TIME REMAINING</span>
-                <div class="box p-2 time-box">
-                    <span>{{timeLeft}}</span>
-                </div>
-            </div>
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" [style.width.%]="progresBar" aria-valuenow="100"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </div>
-        <div class="buffer-container w-50">
-            <div class="buffer-title-container">
-                <span>BUFFER</span>
-            </div>
-            <div class="w-100">
-                <div class="box p-3 d-flex">
-                    <div class="item-buffer-container {{item.resolve? 'item-resolve':''}}" *ngFor="let item of buffer">
-                        <label class="label-buffer">{{item.value | uppercase}}</label>
+<div class="root-container">
+    <div class="container-section">
+        <div class="row mb-2 w-100">
+            <div class="col-5">
+                <div class="timer-container">
+                    <div class="props-timer-conatiner">
+                        <span class="props-span">
+                            ONLY CC35 CERTIFIED AND DHSF 5TH CLASS OFFICERS ARE ALLOWED TO MANIPULATE. ACCESS OR DISABLE
+                            THIS
+                            DEVICE.
+                        </span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-flex w-100">
-        <div class="matix-container">
-            <div class="splash-container">
-                <div id="splashWinsOrFail" class="splashWinsOrFail" [class]="splashWinsOrFail">
-                    <div class="splash-header">
-                        <div class="line d-flex">
-                            <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
+                    <div class="counter-timer">
+                        <span class="title-timer">BREACH TIME REMAINING</span>
+                        <div class="box p-2 time-box">
+                            <span>{{timeLeft}}</span>
                         </div>
                     </div>
-                    <div *ngIf="splashWinsOrFail != null" class="splash-body" [class]="splashWinsOrFail">
-                        <app-script-animations [successOrFail]="splashWinsOrFail"></app-script-animations>
-                    </div>
-                    <div class="splash-footer" [class]="splashWinsOrFail">
-                        <span>{{splashWinsOrFailText | uppercase}}</span>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width.%]="progresBar" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
-                <div *ngIf="splashWinsOrFail" class="button-game-exit-background" [class]="splashWinsOrFail">
-                    <button type="button" class="btn button-game-exit" [class]="splashWinsOrFail">&nbsp;EXIT
-                        INTERFACE</button>
+            </div>
+            <div class="col-7 buffer-container w-50">
+                <div class="buffer-title-container">
+                    <span>BUFFER</span>
+                </div>
+                <div class="w-100">
+                    <div class="box p-3 d-flex">
+                        <div class="item-buffer-container {{item.resolve? 'item-resolve':''}}"
+                            *ngFor="let item of buffer">
+                            <label class="label-buffer">{{item.value | uppercase}}</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="code-matrix-container">
-                <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
-                <span>CODE MATRIX</span>
-            </div>
-            <!-- TODO Creare hover di guida riga colonna -->
-            <!-- <div class="container-hover-line-col">
+        </div>
+        <div class="row mb-2 w-100">
+            <div class="col-5 matix-container">
+                <div class="splash-container-justify">
+                    <div class="splash-container">
+                        <div id="splashWinsOrFail" class="splashWinsOrFail" [class]="splashWinsOrFail">
+                            <div class="splash-header">
+                                <div class="line d-flex">
+                                    <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
+                                </div>
+                            </div>
+                            <div *ngIf="splashWinsOrFail != null" class="splash-body" [class]="splashWinsOrFail">
+                                <app-script-animations [successOrFail]="splashWinsOrFail"></app-script-animations>
+                            </div>
+                            <div class="splash-footer" [class]="splashWinsOrFail">
+                                <span>{{splashWinsOrFailText | uppercase}}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end ms-5 position-relative">
+                            <div *ngIf="splashWinsOrFail" class="button-game-exit-background"
+                                [class]="splashWinsOrFail">
+                                <button type="button" class="btn button-game-exit" [class]="splashWinsOrFail" [routerLink]="'/'" [routerLinkActive]="'active'">&nbsp;EXIT
+                                    INTERFACE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-matrix-container">
+                    <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
+                    <span>CODE MATRIX</span>
+                </div>
+                <!-- TODO Creare hover di guida riga colonna -->
+                <!-- <div class="container-hover-line-col">
                 <div class="hover-line" [id]="'hover'+y" *ngFor="let row of matrix; let y = index">
                     <div class="hover-col" [id]="'hover'+x" *ngFor="let col of row"></div>
                 </div>
             </div> -->
-            <div class="box">
-                <div class="d-flex row-matrix" *ngFor="let row of matrix; let y = index">
-                    <div *ngFor="let col of row; let x = index">
-                        <ng-container *ngIf="!col.select;else selected">
-                            <button [id]="y+'-'+x" type="button" class="btn button-game"
-                                (click)="pushSelectValue(y+'-'+x,col.value)" [disabled]="col.disabled">
-                                <span class="button-game-text">{{col.value |uppercase}}</span>
-                            </button>
-                        </ng-container>
-                        <ng-template #selected>
-                            <label class="btn button-game button-game-selected">[&nbsp;&nbsp;]</label>
-                        </ng-template>
+                <div class="box">
+                    <div class="d-flex row-matrix" *ngFor="let row of matrix; let y = index">
+                        <div *ngFor="let col of row; let x = index">
+                            <ng-container *ngIf="!col.select;else selected">
+                                <button [id]="y+'-'+x" type="button" class="btn button-game"
+                                    (click)="pushSelectValue(y+'-'+x,col.value)" [disabled]="col.disabled">
+                                    <span class="button-game-text">{{col.value |uppercase}}</span>
+                                </button>
+                            </ng-container>
+                            <ng-template #selected>
+                                <label class="btn button-game button-game-selected">[&nbsp;&nbsp;]</label>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7 sequence-container">
+                <div class="sequence-box-decorator"></div>
+                <div class="sequence-box-container">
+                    <img src="assets/img/icon-code-sequnce.png" class="icon-code-sequence-game">
+                    <span>SEQUENCE REQUIRED TO UPLOAD</span>
+                </div>
+                <div class="box">
+                    <div class="row">
+                        <div *ngIf="!notRun" id="CodeColHover" class="col-12 container-hover-code">
+                            <div class="space-code">&nbsp;</div>
+                            <div class="hover-code"></div>
+                        </div>
+                    </div>
+                    <div class="row code-row" *ngFor="let item of code">
+                        <div class="col-6">
+                            <div class="code-challenge" [id]="item.id">
+                                <div *ngFor="let col of item.row">
+                                    <label class="label-game" [ngClass]="col.resolve? 'label-game-resolve':''">
+                                        {{col.value|uppercase}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 code-description">
+                            <img [src]="item.resolve? item.decorator.logoResolve: item.fail? item.decorator.logofail: item.decorator.logo"
+                                class="logo-code-game">
+                            <div class="code-text">
+                                <h5 class="code-title" [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">
+                                    {{item.decorator.title}}</h5>
+                                <label class="code-label"
+                                    [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">{{item.decorator.description}}</label>
+                            </div>
+                        </div>
+                        <div class="col-12 code-result" [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">
+                            <label class="label-game" [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">
+                                {{item.resolve? 'INSTALLED': 'FAILED'}}
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="sequence-container">
-            <div class="sequence-box-decorator"></div>
-            <div class="sequence-box-container">
-                <img src="assets/img/icon-code-sequnce.png" class="icon-code-sequence-game">
-                <span>SEQUENCE REQUIRED TO UPLOAD</span>
-            </div>
-            <div class="box">
-                <div *ngIf="!notRun" id="CodeColHover" class="container-hover-code">
-                    <div style="width: 40px;">&nbsp;</div>
-                    <div class="hover-code"></div>
+        <div *ngIf="splashWinsOrFail" class="d-flex w-100 justify-content-end">
+            <ng-container *ngIf="splashWinsOrFail == 'fail';else endGameMenu">
+                <div class="btn-custom-decorator polygon-bl-corner-decorator yello-styles">
+                    <button type="button" class="btn btn-custom yello-styles polygon-bl-corner"
+                        (click)="tryAgain(true)">
+                        Try Again to Regen
+                    </button>
                 </div>
-                <div class="code-row" *ngFor="let item of code">
-                    <div class="code-challenge" [id]="item.id">
-                        <div *ngFor="let col of item.row">
-                            <label class="label-game" [ngClass]="col.resolve? 'label-game-resolve':''">
-                                {{col.value|uppercase}}
-                            </label>
-                        </div>
-                    </div>
-                    <div class="code-description">
-                        <img [src]="item.resolve? item.decorator.logoResolve: item.fail? item.decorator.logofail: item.decorator.logo"
-                            class="logo-code-game">
-                        <div class="code-text">
-                            <h5 [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">{{item.decorator.title}}</h5>
-                            <label
-                                [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">{{item.decorator.description}}</label>
-                        </div>
-                    </div>
-                    <div class="code-result" [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">
-                        <label class="label-game" [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">
-                            {{item.resolve? 'INSTALLED': 'FAILED'}}
-                        </label>
-                    </div>
+                &nbsp;
+                <div class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
+                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner"
+                        (click)="tryAgain(false)">
+                        Try Again
+                    </button>
                 </div>
-            </div>
+            </ng-container>
+            <ng-template #endGameMenu>
+                <div class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
+                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="nextLevel()">
+                        Next Level
+                    </button>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

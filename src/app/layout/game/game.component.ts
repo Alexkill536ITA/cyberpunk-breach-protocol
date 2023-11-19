@@ -1,4 +1,6 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Challenge, Level, Matrix } from 'src/app/models/comon.model';
+import { MatrixLevelGeneratorService } from 'src/app/service/matrix-level-generator.service';
 
 @Component({
   selector: 'app-game',
@@ -8,88 +10,56 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 export class GameComponent implements OnInit {
 
   notRun = true;
-  timeLeft: string = '30';
   interval: any;
-  milliseconds: number = 0;
   progresBar: number = 100;
   positionReadBuffer: number = 0;
-  bufferSize: number = 8;
   marixReadHistoy: string = 'col';
+  sesolveRegister: number = 0;
+  failRegister: number = 0;
   splashWinsOrFail: string | null = null;
   splashWinsOrFailText: string = 'Uploaded Demons Failed';
+  difficulty: number = 0;
+  lastLevel: Level | null = null;
 
-  matrix = [
-    [{ value: '1c', select: false, disabled: false }, { value: 'bd', select: false, disabled: false }, { value: 'e9', select: false, disabled: false }, { value: '55', select: false, disabled: false }, { value: 'e9', select: false, disabled: false }],
-    [{ value: '1c', select: false, disabled: true }, { value: '1c', select: false, disabled: true }, { value: '1c', select: false, disabled: true }, { value: 'e9', select: false, disabled: true }, { value: '1c', select: false, disabled: true }],
-    [{ value: '55', select: false, disabled: true }, { value: '55', select: false, disabled: true }, { value: '55', select: false, disabled: true }, { value: 'e9', select: false, disabled: true }, { value: '55', select: false, disabled: true }],
-    [{ value: '55', select: false, disabled: true }, { value: '55', select: false, disabled: true }, { value: '1c', select: false, disabled: true }, { value: 'bd', select: false, disabled: true }, { value: '55', select: false, disabled: true }],
-    [{ value: '1c', select: false, disabled: true }, { value: '55', select: false, disabled: true }, { value: '1c', select: false, disabled: true }, { value: '55', select: false, disabled: true }, { value: '1c', select: false, disabled: true }],
-  ]
-
-  code = [
-    {
-      id: 'challenge-1',
-      row: [
-        { value: 'e9', resolve: false },
-        { value: '1c', resolve: false },
-        { value: '1c', resolve: false }
-      ],
-      read: 0,
-      resolve: false,
-      fail: false,
-      decorator: {
-        logo: "assets/img/Code-Tier-1.png",
-        logoResolve: "assets/img/Code-Tier-1-resolve.png",
-        logofail: "assets/img/Code-Tier-1-fail.png",
-        title: "DATAMINE_V1",
-        description: "555555555555555555555555"
-      }
-    },
-    {
-      id: 'challenge-2',
-      row: [
-        { value: '1c', resolve: false },
-        { value: '1c', resolve: false },
-        { value: '1c', resolve: false }
-      ],
-      read: 0,
-      resolve: false,
-      fail: false,
-      decorator: {
-        logo: "assets/img/Code-Tier-2.png",
-        logoResolve: "assets/img/Code-Tier-2-resolve.png",
-        logofail: "assets/img/Code-Tier-2-fail.png",
-        title: "DATAMINE_V2",
-        description: "555555555555555555555555"
-      }
-    },
-    {
-      id: 'challenge-3',
-      row: [
-        { value: '1c', resolve: false },
-        { value: 'bd', resolve: false },
-        { value: 'e9', resolve: false }
-      ],
-      read: 0,
-      resolve: false,
-      fail: null,
-      decorator: {
-        logo: "assets/img/Code-Tier-3.png",
-        logoResolve: "assets/img/Code-Tier-3-resolve.png",
-        logofail: "assets/img/Code-Tier-3-fail.png",
-        title: "DATAMINE_V3",
-        description: "555555555555555555555555"
-      }
-    },
-  ]
-
+  matrix: Matrix[][] = [[]];
+  code: Challenge[] = [];
   buffer: any[] = [];
+  bufferSize: number = 8;
+  timeLeft: string = '30';
+  milliseconds: number = 0;
 
-  constructor(private renderer: Renderer2) {
+  @Input() id: string = 'auto';
 
-  }
+  constructor(
+    private levelGenerator: MatrixLevelGeneratorService
+  ) { }
 
   ngOnInit(): void {
+    this.loaderLevel(this.id);
+  }
+
+  loaderLevel(id: string, lastLevel?: Level | null) {
+    let level: Level | null = null
+
+    if (lastLevel) {
+      level = lastLevel;
+    } else if (id != 'auto') {
+      level = null;
+    } else {
+      level = this.levelGenerator.autoLevel(this.difficulty);
+    }
+
+    this.lastLevel = structuredClone(level);
+
+    if (level == null) {
+      console.error('Not Found Level: ' + id)
+    } else {
+      this.matrix = level.matrix;
+      this.code = level.code;
+      this.bufferSize = level.bufferSize;
+      this.timeLeft = level.timeLeft
+    }
+
     for (let index = 0; index < this.bufferSize; index++) {
       this.buffer.push({ value: null, focused: false, resolve: false });
     }
@@ -147,18 +117,20 @@ export class GameComponent implements OnInit {
             });
             if (resolve.length == challenge.row.length) {
               challenge.resolve = true;
+              this.sesolveRegister++;
             }
           } else {
             let elementRow = document.getElementById(challenge.id);
-            elementRow?.insertAdjacentHTML('afterbegin', `<div style="width: 40px;">&nbsp;</div>`);
+            elementRow?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
           }
         } else {
           challenge.fail = true;
+          this.failRegister++;
         }
       }
     });
     let elementColHover = document.getElementById('CodeColHover');
-    elementColHover?.insertAdjacentHTML('afterbegin', `<div style="width: 40px;">&nbsp;</div>`);
+    elementColHover?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
     this.positionReadBuffer++;
     this.checkWins();
   }
@@ -171,11 +143,16 @@ export class GameComponent implements OnInit {
     this.positionReadBuffer = 0;
     this.bufferSize = 5;
     this.marixReadHistoy = 'col';
+    this.sesolveRegister = 0;
+    this.failRegister = 0;
+    this.splashWinsOrFail = null;
+    this.splashWinsOrFailText = 'Uploaded Demons Failed';
+    this.buffer = [];
   }
 
   matrixFullDisable() {
-    this.matrix.forEach((row) => {
-      row.forEach((el) => {
+    this.matrix.forEach((row: any) => {
+      row.forEach((el: any) => {
         el.disabled = true;
       })
     });
@@ -188,7 +165,7 @@ export class GameComponent implements OnInit {
     if (this.marixReadHistoy == 'row') {
       this.marixReadHistoy = 'col';
       this.matrixFullDisable();
-      this.matrix[parseInt(coordinate[0])].forEach((el) => {
+      this.matrix[parseInt(coordinate[0])].forEach((el: any) => {
         el.disabled = false;
       });
     } else if (this.marixReadHistoy == 'col') {
@@ -202,16 +179,9 @@ export class GameComponent implements OnInit {
   }
 
   checkWins(forceFail?: boolean, failText?: string) {
-    let sesolveRegister = 0;
-    let failRegister = 0;
-    this.code.forEach((challenge) => {
-      if (challenge.resolve) sesolveRegister++;
-      if (challenge.fail) failRegister++;
-    });
-
     if (forceFail) {
       this.setFailChallenge();
-      if (sesolveRegister > 0) {
+      if (this.sesolveRegister > 0) {
         this.splashWinsOrFail = 'resolve';
         this.splashWinsOrFailText = 'Uploaded demons';
       } else {
@@ -222,14 +192,14 @@ export class GameComponent implements OnInit {
       return
     }
 
-    if (sesolveRegister == this.code.length || failRegister == this.code.length || (sesolveRegister + failRegister) == this.code.length) {
-      if (sesolveRegister == this.code.length) {
+    if (this.sesolveRegister == this.code.length || this.failRegister == this.code.length || (this.sesolveRegister + this.failRegister) == this.code.length) {
+      if (this.sesolveRegister == this.code.length) {
         this.splashWinsOrFail = 'resolve';
         this.splashWinsOrFailText = 'All demons uploaded';
-      } else if (sesolveRegister > 0) {
+      } else if (this.sesolveRegister > 0) {
         this.splashWinsOrFail = 'resolve';
         this.splashWinsOrFailText = 'Uploaded demons';
-      } else if (failRegister == this.code.length) {
+      } else if (this.failRegister == this.code.length) {
         this.splashWinsOrFail = 'fail';
         this.splashWinsOrFailText = 'Uploaded Demons Failed';
       }
@@ -239,8 +209,13 @@ export class GameComponent implements OnInit {
 
     if (this.positionReadBuffer >= this.bufferSize) {
       this.setFailChallenge();
-      this.splashWinsOrFail = 'fail';
-      this.splashWinsOrFailText = 'Complete buffer';
+      if (this.sesolveRegister > 0) {
+        this.splashWinsOrFail = 'resolve';
+        this.splashWinsOrFailText = 'Uploaded demons';
+      } else {
+        this.splashWinsOrFail = 'fail';
+        this.splashWinsOrFailText = 'Complete buffer';
+      }
       this.stopTimer();
       return
     }
@@ -252,5 +227,20 @@ export class GameComponent implements OnInit {
         challenge.fail = true;
       }
     });
+  }
+
+  tryAgain(regen: boolean) {
+    this.resetGame();
+    if (regen) {
+      this.loaderLevel('auto')
+    } else {
+      this.loaderLevel('auto', this.lastLevel)
+    }
+  }
+
+  nextLevel() {
+    this.difficulty++;
+    this.resetGame();
+    this.loaderLevel('auto');
   }
 }

@@ -1,12 +1,20 @@
 {
   "name": "cyberpunk-hexcode-breach",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host=0.0.0.0 --disable-host-check",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "electron": "electron .",
+    "electron-build": "ng build && electron .",
+    "package-win": "electron-packager ./ cyberpunk-hexcode-breach --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"cyberpunk-hexcode-breach\"",
+    "package-win-64": "electron-packager ./ cyberpunk-hexcode-breach --overwrite --asar=true --platform=win32 --arch=x64 --icon=assets/icons/win/icon.ico --prune=true --out=builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"cyberpunk-hexcode-breach\"",
+    "package-linux": "electron-packager ./ cyberpunk-hexcode-breach --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=builds",
+    "package-mac": "electron-packager ./ --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=builds",
+    "package-all": "npm run package-win && npm run package-win-64 && npm run package-linux && npm run package-mac"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +28,7 @@
     "@angular/router": "^16.2.0",
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "@popperjs/core": "^2.11.8",
+    "electron": "^27.1.0",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
     "primeicons": "^6.0.1",
