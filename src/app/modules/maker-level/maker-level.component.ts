@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, UntypedFormArray, UntypedFormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Decorator, Level, TypeDecorator } from 'src/app/models/comon.model';
+import { Subject } from 'rxjs';
+import { Level } from 'src/app/models/comon.model';
 import { MatrixLevelGeneratorService } from 'src/app/service/matrix-level-generator.service';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,19 +12,11 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./maker-level.component.scss']
 })
 export class MakerLevelComponent implements OnInit {
+  public onClose: Subject<Level> = new Subject<Level>;
 
-  @Input() level: Level | undefined;
+  @Input() level!: Level;
 
-  levelFrom: FormGroup = this.fb.group({
-    id: this.fb.control(uuidv4(), Validators.required),
-    name: this.fb.control('', [Validators.required]),
-    timeLeft: this.fb.control(30, [Validators.required, Validators.min(10), Validators.max(120)]),
-    bufferSize: this.fb.control(4, [Validators.required, Validators.min(4), Validators.max(16)]),
-    matrix: this.fb.control(Validators.required),
-    code: this.fb.array([
-      this.challenge()
-    ]),
-  });
+  levelFrom!: FormGroup;
 
   challenge(): FormGroup {
     return this.fb.group({
@@ -33,9 +26,9 @@ export class MakerLevelComponent implements OnInit {
       resolve: this.fb.control(false),
       fail: this.fb.control(false),
       decorator: this.fb.group({
-        logo: this.fb.control('/assets/img/Code-Tier-1.png'),
-        logoResolve: this.fb.control('/assets/img/Code-Tier-1-resolve.png'),
-        logofail: this.fb.control('/assets/img/Code-Tier-1-fail.png'),
+        logo: this.fb.control('./assets/img/Code-Tier-1.png'),
+        logoResolve: this.fb.control('./assets/img/Code-Tier-1-resolve.png'),
+        logofail: this.fb.control('./assets/img/Code-Tier-1-fail.png'),
         title: this.fb.control('DATAMINE_V1', Validators.required),
         description: this.fb.control('Base Data', Validators.required)
       })
@@ -58,7 +51,27 @@ export class MakerLevelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.levelFrom = this.fb.group({
+      id: this.fb.control(uuidv4(), Validators.required),
+      name: this.fb.control('', [Validators.required]),
+      timeLeft: this.fb.control(30, [Validators.required, Validators.min(10), Validators.max(120)]),
+      bufferSize: this.fb.control(4, [Validators.required, Validators.min(4), Validators.max(16)]),
+      matrix: this.fb.control(Validators.required),
+      code: this.fb.array([
+        this.challenge()
+      ]),
+    });
 
+    console.log(this.level)
+    if (this.level) {
+      this.levelFrom.get('id')?.setValue(this.level.id);
+      this.levelFrom.get('name')?.setValue(this.level.name);
+      this.levelFrom.get('timeLeft')?.setValue(this.level.timeLeft);
+      this.levelFrom.get('bufferSize')?.setValue(this.level.bufferSize);
+      this.levelFrom.get('matrix')?.setValue(this.level.matrix);
+      this.matrixPreviw = this.level.matrix;
+      this.levelFrom.get('code')?.setValue(this.level.code);
+    }
   }
 
   undateDecorator(element: string, formControl: any) {
@@ -97,9 +110,9 @@ export class MakerLevelComponent implements OnInit {
 
   clearChallenge(id: string, formControl: any) {
     formControl.get('row').reset();
-    formControl.get('decorator').get('logo').setValue('/assets/img/Code-Tier-1.png');
-    formControl.get('decorator').get('logoResolve').setValue('/assets/img/Code-Tier-1-resolve.png');
-    formControl.get('decorator').get('logofail').setValue('/assets/img/Code-Tier-1-fail.png');
+    formControl.get('decorator').get('logo').setValue('./assets/img/Code-Tier-1.png');
+    formControl.get('decorator').get('logoResolve').setValue('./assets/img/Code-Tier-1-resolve.png');
+    formControl.get('decorator').get('logofail').setValue('./assets/img/Code-Tier-1-fail.png');
     formControl.get('decorator').get('title').setValue('DATAMINE_V1');
     formControl.get('decorator').get('description').setValue('Base Data');
     let elemnt = document.getElementById(id) as HTMLSelectElement;
@@ -112,6 +125,8 @@ export class MakerLevelComponent implements OnInit {
   }
 
   submit() {
-    
+    this.level = this.levelFrom.getRawValue();
+    this.onClose.next(this.level);
+    this.modal.dismiss();
   }
 }

@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule, routingComponent } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './layout/home/home.component';
+import { HomeModule } from './layout/home/home.module';
 import { GameModule } from './layout/game/game.module';
 import { BuilderLevelModule } from "./layout/builder-level/builder-level.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    routingComponent
   ],
   imports: [
     BrowserModule,
     GameModule,
     BuilderLevelModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

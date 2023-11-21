@@ -11,7 +11,8 @@
                 </button>
             </div>
             <div class="btn-decorator main-menu">
-                <button type="button" class="btn btn-main-menu" [routerLink]="'/'" [routerLinkActive]="'active'">Main Menu</button>
+                <button type="button" class="btn btn-main-menu" [routerLink]="'/'" [routerLinkActive]="'active'">Main
+                    Menu</button>
             </div>
         </div>
         <div class="builder-level-container box">
@@ -45,19 +46,20 @@
                         </td>
                         <td class="d-flex justify-content-end">
                             <div class="btn-decorator" title="Play Level">
-                                <button type="button" class="btn">
+                                <button type="button" class="btn" [routerLink]="'/game'" [routerLinkActive]="'active'"
+                                    [state]="{ id: level.id, level: level}">
                                     <i class="bi bi-play"></i>
                                 </button>
                             </div>
                             &nbsp;&nbsp;
                             <div class="btn-decorator" title="Edit">
-                                <button type="button" class="btn">
+                                <button type="button" class="btn" (click)="openModalNewOrEdit(level)">
                                     <i class="bi bi-pencil"></i>
                                 </button>
                             </div>
                             &nbsp;&nbsp;
                             <div class="btn-decorator" title="Delete">
-                                <button type="button" class="btn">
+                                <button type="button" class="btn" (click)="deleteItem(level.id)">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>

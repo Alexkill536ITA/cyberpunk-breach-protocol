@@ -52,3 +52,16 @@ export interface Level {
     matrix: Array<Matrix[]>,
     code: Challenge[]
 }
+
+export enum ElectronAction {
+    FINDBYID = "FINDBYID",
+    FINDALL = "FINDALL",
+    ADDLEVEL = "ADDLEVEL",
+    UPDATELEVEL = "UPDATELEVEL",
+    DELETELEVEL = "DELETELEVEL",
+    QUIT = "QUIT"
+}
+
+export enum ElectronEvent {
+    GOT_NEW_REQUEST = 'GOT_NEW_REQUEST'
+}

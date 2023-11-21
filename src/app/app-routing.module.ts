@@ -6,8 +6,8 @@ import { BuilderLevelComponent } from "../app/layout/builder-level/builder-level
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "game", component:  GameComponent},
-  { path: "editorlevel", component:  BuilderLevelComponent},
+  { path: "game", component: GameComponent },
+  { path: "editorlevel", component: BuilderLevelComponent },
   { path: '**', redirectTo: '' }
 ];
 
@@ -17,4 +17,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponent = [HomeComponent,]

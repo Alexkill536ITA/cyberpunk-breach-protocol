@@ -6,7 +6,7 @@ import { ButtonModule } from "primeng/button";
 import { MakerLevelModule } from "../../modules/maker-level/maker-level.module";
 import { MatrixListShowModule } from "../../modules/matrix-list-show/matrix-list-show.module";
 import { RouterModule } from '@angular/router';
-
+import { ControlerSqllite3Service } from 'src/app/service/controler-sqllite3.service';
 
 
 @NgModule({
@@ -23,6 +23,9 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     BuilderLevelComponent
+  ],
+  providers: [
+    ControlerSqllite3Service
   ]
 })
 export class BuilderLevelModule { }

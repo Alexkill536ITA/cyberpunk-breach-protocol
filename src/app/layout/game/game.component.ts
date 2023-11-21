@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Challenge, Level, Matrix } from 'src/app/models/comon.model';
 import { MatrixLevelGeneratorService } from 'src/app/service/matrix-level-generator.service';
 
@@ -28,36 +29,43 @@ export class GameComponent implements OnInit {
   timeLeft: string = '30';
   milliseconds: number = 0;
 
-  @Input() id: string = 'auto';
+  id: string;
+  level!: Level;
 
   constructor(
-    private levelGenerator: MatrixLevelGeneratorService
-  ) { }
+    private levelGenerator: MatrixLevelGeneratorService,
+    private router: Router
+  ) {
+    const input = this.router.getCurrentNavigation()?.extras.state;
+    if (input) {
+      this.id = input['id'];
+      this.level = input['level'];
+    } else {
+      this.id = 'auto';
+    }
+
+  }
 
   ngOnInit(): void {
     this.loaderLevel(this.id);
   }
 
   loaderLevel(id: string, lastLevel?: Level | null) {
-    let level: Level | null = null
-
     if (lastLevel) {
-      level = lastLevel;
-    } else if (id != 'auto') {
-      level = null;
-    } else {
-      level = this.levelGenerator.autoLevel(this.difficulty);
+      this.level = lastLevel;
+    } else if (id == 'auto') {
+      this.level = this.levelGenerator.autoLevel(this.difficulty);
     }
 
-    this.lastLevel = structuredClone(level);
+    this.lastLevel = structuredClone(this.level);
 
-    if (level == null) {
+    if (this.level == null) {
       console.error('Not Found Level: ' + id)
     } else {
-      this.matrix = level.matrix;
-      this.code = level.code;
-      this.bufferSize = level.bufferSize;
-      this.timeLeft = level.timeLeft
+      this.matrix = this.level.matrix;
+      this.code = this.level.code;
+      this.bufferSize = this.level.bufferSize;
+      this.timeLeft = this.level.timeLeft
     }
 
     for (let index = 0; index < this.bufferSize; index++) {
