@@ -59,7 +59,6 @@ export class BuilderLevelComponent implements OnInit {
   }
 
   deleteItem(id: string): void {
-    console.log(id)
     this.controlerSqllite3Service.invokeAction(ElectronAction.DELETELEVEL, id).then((result) => {
       console.log('pas delete ' + result);
     }).finally(() => {

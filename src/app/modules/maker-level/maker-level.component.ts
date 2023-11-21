@@ -62,7 +62,6 @@ export class MakerLevelComponent implements OnInit {
       ]),
     });
 
-    console.log(this.level)
     if (this.level) {
       this.levelFrom.get('id')?.setValue(this.level.id);
       this.levelFrom.get('name')?.setValue(this.level.name);
