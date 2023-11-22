@@ -1,58 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Decorator, TypeDecorator, Challenge, Matrix, Level } from '../models/comon.model';
+import { Decorator, TypeDecorator, Challenge, Level } from '../models/comon.model';
 import { Livello_1, Livello_10, Livello_11, Livello_12, Livello_13, Livello_14, Livello_2, Livello_3, Livello_4, Livello_5, Livello_6, Livello_7, Livello_8, Livello_9 } from '../models/levels.model';
+import { MatrixGeneratorService } from './matrix-generator.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MatrixLevelGeneratorService {
+export class LevelGeneratorService {
 
-  getRandomValue(): string {
-    switch (Math.floor(Math.random() * 6)) {
-      case 0:
-        return '55';
-      case 1:
-        return '1C';
-      case 2:
-        return '7A';
-      case 3:
-        return 'BD';
-      case 4:
-        return 'E9';
-      case 5:
-        return 'FF';
-      default:
-        return this.getRandomValue();
-    }
-  }
-
-  matrixGen(size: number): Array<Matrix[]> {
-    let matrix: Array<Matrix[]>  = [];
-    for (let y = 0; y < size; y++) {
-      let row: Matrix[] = [];
-      for (let x = 0; x < size; x++) {
-        if (y == 0) {
-          row.push({ value: this.getRandomValue(), select: false, disabled: false });
-        } else {
-          row.push({ value: this.getRandomValue(), select: false, disabled: true });
-        }
-      }
-      matrix.push(row);
-    }
-    return matrix;
-  }
-
-  codeGen(size: number): any[] {
-    let code = [];
-
-    if (size >= 2 && size <= 4) {
-      for (let i = 0; i < size; i++) {
-        code.push({ value: this.getRandomValue(), resolve: false });
-      }
-      return code;
-    }
-    return this.codeGen(4);
-  }
+  constructor(
+    private matrixGeneratorService: MatrixGeneratorService
+  ) { }
 
   builderDecorator(typeDecoratorSlect: TypeDecorator | string): Decorator {
     switch (typeDecoratorSlect) {
@@ -219,10 +177,11 @@ export class MatrixLevelGeneratorService {
     }
   }
 
-  builderChallenge(id: number, sizeCode: number, typeDecoratorSlect: TypeDecorator, customDecorator?: Decorator): Challenge {
+  builderChallenge(id: number, sequence: any[], typeDecoratorSlect: TypeDecorator, customDecorator?: Decorator): Challenge {
     let challenge: Challenge = {
       id: 'challenge-' + id,
-      row: this.codeGen(sizeCode),
+      size: sequence.length,
+      row: [...sequence],
       read: 0,
       resolve: false,
       fail: false,
@@ -231,56 +190,12 @@ export class MatrixLevelGeneratorService {
     return challenge
   }
 
-  builderLevel(timeLeft: string, bufferSize: number, matrixSize: number, code: Challenge[]): Level {
-    return {
-      id: 'autoGen',
-      name: 'autoGen',
-      timeLeft: timeLeft,
-      bufferSize: bufferSize,
-      matrix: this.matrixGen(matrixSize),
-      code: code
-    }
-  }
-
-  autoLevel(difficulty: number): Level {
-    switch (difficulty) {
-      case 0:
-        return this.builderLevel('30', 4, Livello_1.matrixSize, this.challenges(Livello_1.challenge.length, Livello_1.challenge))
-      case 1:
-        return this.builderLevel('30', 4, Livello_2.matrixSize, this.challenges(Livello_2.challenge.length, Livello_2.challenge))
-      case 2:
-        return this.builderLevel('30', 4, Livello_3.matrixSize, this.challenges(Livello_3.challenge.length, Livello_3.challenge))
-      case 3:
-        return this.builderLevel('30', 6, Livello_4.matrixSize, this.challenges(Livello_4.challenge.length, Livello_4.challenge))
-      case 4:
-        return this.builderLevel('30', 6, Livello_5.matrixSize, this.challenges(Livello_5.challenge.length, Livello_5.challenge))
-      case 5:
-        return this.builderLevel('30', 6, Livello_6.matrixSize, this.challenges(Livello_6.challenge.length, Livello_6.challenge))
-      case 6:
-        return this.builderLevel('30', 7, Livello_7.matrixSize, this.challenges(Livello_7.challenge.length, Livello_7.challenge))
-      case 7:
-        return this.builderLevel('30', 7, Livello_8.matrixSize, this.challenges(Livello_8.challenge.length, Livello_8.challenge))
-      case 8:
-        return this.builderLevel('30', 7, Livello_9.matrixSize, this.challenges(Livello_9.challenge.length, Livello_9.challenge))
-      case 9:
-        return this.builderLevel('30', 7, Livello_10.matrixSize, this.challenges(Livello_10.challenge.length, Livello_10.challenge))
-      case 10:
-        return this.builderLevel('30', 6, Livello_11.matrixSize, this.challenges(Livello_11.challenge.length, Livello_11.challenge))
-      case 11:
-        return this.builderLevel('30', 6, Livello_12.matrixSize, this.challenges(Livello_12.challenge.length, Livello_12.challenge))
-      case 12:
-        return this.builderLevel('30', 6, Livello_13.matrixSize, this.challenges(Livello_13.challenge.length, Livello_13.challenge))
-      case 13:
-        return this.builderLevel('30', 6, Livello_14.matrixSize, this.challenges(Livello_14.challenge.length, Livello_14.challenge))
-      default:
-        return this.builderLevel(String((Math.random() * (30 - 10 + 1) + 10).toFixed(2)), Math.floor(Math.random() * (8 - 4 + 1)) + 4, 6, this.challenges(Livello_14.challenge.length, Livello_14.challenge))
-    }
-  }
-
-  challenges(number: number, sizeCode: number[]): Challenge[] {
+  builderLevel(timeLeft: string, bufferSize: number, matrixSize: number, sequenceSize: number[]): Level {
     let typeDecorator = null;
-    let challenges = []
-    for (let index = 0; index < number; index++) {
+    let code: Challenge[] = [];
+    let res = this.matrixGeneratorService.generate(bufferSize, matrixSize, sequenceSize);
+
+    for (let index = 0; index < sequenceSize.length; index++) {
       switch (index) {
         case 0:
           typeDecorator = TypeDecorator.DATAMINE_V1;
@@ -295,10 +210,52 @@ export class MatrixLevelGeneratorService {
           typeDecorator = TypeDecorator.CODING;
           break;
       }
-      challenges.push(this.builderChallenge(index, sizeCode[index], typeDecorator));
+      code.push(this.builderChallenge(index, res.sequences[index], typeDecorator));
+    };
+
+    return {
+      id: 'autoGen',
+      name: 'autoGen',
+      timeLeft: timeLeft,
+      bufferSize: bufferSize,
+      matrix: res.matrix,
+      code: code
     }
-    return challenges;
   }
 
+  autoLevel(difficulty: number): Level {
+    switch (difficulty) {
+      case 0:
+        return this.builderLevel('30', 4, Livello_1.matrixSize, Livello_1.challenge)
+      case 1:
+        return this.builderLevel('30', 4, Livello_2.matrixSize, Livello_2.challenge)
+      case 2:
+        return this.builderLevel('30', 4, Livello_3.matrixSize, Livello_3.challenge)
+      case 3:
+        return this.builderLevel('30', 6, Livello_4.matrixSize, Livello_4.challenge)
+      case 4:
+        return this.builderLevel('30', 6, Livello_5.matrixSize, Livello_5.challenge)
+      case 5:
+        return this.builderLevel('30', 6, Livello_6.matrixSize, Livello_6.challenge)
+      case 6:
+        return this.builderLevel('30', 7, Livello_7.matrixSize, Livello_7.challenge)
+      case 7:
+        return this.builderLevel('30', 7, Livello_8.matrixSize, Livello_8.challenge)
+      case 8:
+        return this.builderLevel('30', 7, Livello_9.matrixSize, Livello_9.challenge)
+      case 9:
+        return this.builderLevel('30', 7, Livello_10.matrixSize, Livello_10.challenge)
+      case 10:
+        return this.builderLevel('30', 6, Livello_11.matrixSize, Livello_11.challenge)
+      case 11:
+        return this.builderLevel('30', 6, Livello_12.matrixSize, Livello_12.challenge)
+      case 12:
+        return this.builderLevel('30', 6, Livello_13.matrixSize, Livello_13.challenge)
+      case 13:
+        return this.builderLevel('30', 6, Livello_14.matrixSize, Livello_14.challenge)
+      default:
+        return this.builderLevel(String((Math.random() * (30 - 10 + 1) + 10).toFixed(2)), Math.floor(Math.random() * (8 - 4 + 1)) + 4, 6, Livello_14.challenge)
+    }
+  }
 
 }

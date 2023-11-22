@@ -6,6 +6,7 @@ export interface Matrix {
 
 export interface Challenge {
     id: string;
+    size: number;
     row: any[];
     read: number;
     resolve: boolean;

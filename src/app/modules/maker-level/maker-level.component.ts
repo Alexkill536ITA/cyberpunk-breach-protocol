@@ -3,7 +3,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, UntypedFormArray, Untyp
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { Level } from 'src/app/models/comon.model';
-import { MatrixLevelGeneratorService } from 'src/app/service/matrix-level-generator.service';
+import { LevelGeneratorService } from 'src/app/service/level-generator.service';
+import { MatrixGeneratorService } from 'src/app/service/matrix-generator.service';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -21,6 +22,7 @@ export class MakerLevelComponent implements OnInit {
   challenge(): FormGroup {
     return this.fb.group({
       id: this.fb.control('challenge-1', Validators.required),
+      size: this.fb.control('2', Validators.required),
       row: this.fb.control([], Validators.required),
       read: this.fb.control(0),
       resolve: this.fb.control(false),
@@ -47,7 +49,8 @@ export class MakerLevelComponent implements OnInit {
   constructor(
     public modal: NgbActiveModal,
     private fb: FormBuilder,
-    private gneratorService: MatrixLevelGeneratorService
+    private matrixGneratorService: MatrixGeneratorService,
+    private levelGneratorService: LevelGeneratorService
   ) { }
 
   ngOnInit(): void {
@@ -69,13 +72,25 @@ export class MakerLevelComponent implements OnInit {
       this.levelFrom.get('bufferSize')?.setValue(this.level.bufferSize);
       this.levelFrom.get('matrix')?.setValue(this.level.matrix);
       this.matrixPreviw = this.level.matrix;
-      this.levelFrom.get('code')?.setValue(this.level.code);
+      this.code.clear();
+      this.level.code.forEach((code) => {
+        let temp = this.challenge();
+        temp.get('id')?.setValue(code.id);
+        temp.get('size')?.setValue(code.size);
+        temp.get('row')?.setValue(code.row);
+        temp.get('decorator')?.get('logo')?.setValue(code.decorator.logo);
+        temp.get('decorator')?.get('logoResolve')?.setValue(code.decorator.logoResolve);
+        temp.get('decorator')?.get('logofail')?.setValue(code.decorator.logofail);
+        temp.get('decorator')?.get('title')?.setValue(code.decorator.title);
+        temp.get('decorator')?.get('description')?.setValue(code.decorator.description);
+        this.code.push(temp);
+      });
     }
   }
 
-  undateDecorator(element: string, formControl: any) {
+  updateDecorator(element: string, formControl: any) {
     let select = document.getElementById(element) as HTMLSelectElement;
-    formControl.setValue(Object.assign({}, formControl.value, this.gneratorService.builderDecorator(select.value)));
+    formControl.setValue(Object.assign({}, formControl.value, this.levelGneratorService.builderDecorator(select.value)));
   }
 
   setSizeMatrix() {
@@ -83,19 +98,27 @@ export class MakerLevelComponent implements OnInit {
     this.sizeMatrix = parseInt(element.value);
   }
 
-  setSizeCode(id: string) {
-    const element = document.getElementById(id) as HTMLSelectElement;
-    this.sizeCode = parseInt(element.value);
+  getSizeCode() {
+    let sizeCode = [];
+    let codes = this.levelFrom.get('code') as FormArray;
+    for (let index = 0; index < codes.length; index++) {
+      sizeCode.push(parseInt(codes.at(index).get('size')?.value));
+    }
+    return sizeCode;
   }
 
-  generateMatrix() {
-    let matrix = this.gneratorService.matrixGen(this.sizeMatrix);
-    this.levelFrom.get('matrix')?.setValue(matrix);
-    this.matrixPreviw = matrix;
+  setRowCode(sequences: any[]) {
+    let codes = this.levelFrom.get('code') as FormArray;
+    for (let index = 0; index < codes.length; index++) {
+      codes.at(index).get('row')?.setValue(sequences[index]);
+    }
   }
 
-  generateCode(formControl: any) {
-    formControl.setValue(this.gneratorService.codeGen(this.sizeCode));
+  generate() {
+    let res = this.matrixGneratorService.generate(this.levelFrom.get('bufferSize')?.value, this.sizeMatrix, this.getSizeCode());
+    this.levelFrom.get('matrix')?.setValue(res.matrix);
+    this.matrixPreviw = res.matrix;
+    this.setRowCode(res.sequences);
   }
 
   addChallenge() {

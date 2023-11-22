@@ -56,7 +56,8 @@
                         <div class="d-flex justify-content-end ms-5 position-relative">
                             <div *ngIf="splashWinsOrFail" class="button-game-exit-background"
                                 [class]="splashWinsOrFail">
-                                <button type="button" class="btn button-game-exit" [class]="splashWinsOrFail" [routerLink]="'/'" [routerLinkActive]="'active'">&nbsp;EXIT
+                                <button type="button" class="btn button-game-exit" [class]="splashWinsOrFail"
+                                    [routerLink]="'/'" [routerLinkActive]="'active'">&nbsp;EXIT
                                     INTERFACE</button>
                             </div>
                         </div>
@@ -132,16 +133,8 @@
         </div>
         <div *ngIf="splashWinsOrFail" class="d-flex w-100 justify-content-end">
             <ng-container *ngIf="splashWinsOrFail == 'fail';else endGameMenu">
-                <div class="btn-custom-decorator polygon-bl-corner-decorator yello-styles">
-                    <button type="button" class="btn btn-custom yello-styles polygon-bl-corner"
-                        (click)="tryAgain(true)">
-                        Try Again to Regen
-                    </button>
-                </div>
-                &nbsp;
                 <div class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
-                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner"
-                        (click)="tryAgain(false)">
+                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="tryAgain()">
                         Try Again
                     </button>
                 </div>

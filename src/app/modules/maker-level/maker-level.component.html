@@ -42,8 +42,8 @@
             <h4>Matrix</h4>
             <div class="col-6">
                 <div class="row">
-                    <label class="col-6">Size Matrix *</label>
-                    <div class="col-6 d-flex">
+                    <label class="col">Size Matrix *</label>
+                    <div class="col-3 d-flex">
                         <div class="w-100 custom-input-decorator polygon-bl-corner-decorator"
                             [class]="levelFrom.get('matrix')?.invalid && (levelFrom.get('matrix')?.dirty || levelFrom.get('matrix')?.touched) ? 'invalid':''">
                             <select id="matrixSize" class="custom-input form-select w-100 polygon-bl-corner"
@@ -54,13 +54,6 @@
                                 <option value="7">7</option>
                                 <option value="8">8</option>
                             </select>
-                        </div>
-                        &nbsp;
-                        <div class="w-100">
-                            <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator">
-                                <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner"
-                                    (click)="generateMatrix()">Generate</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,30 +76,22 @@
         <div class="row w-100">
             <h4>Challenge</h4>
             <ng-container formArrayName="code">
+                {{code.controls.length | json}}
                 <ng-container *ngFor="let challenge of code.controls; let i = index">
                     <div class="challenge-form" [formArrayName]="i">
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="row">
-                                    <label class="col-6">Code *</label>
-                                    <div class="col-6 d-flex">
+                                    <label class="col">Code *</label>
+                                    <div class="col-3 d-flex">
                                         <div class="w-100 custom-input-decorator polygon-bl-corner-decorator">
                                             <select id="codeSize{{i}}"
                                                 class="custom-input form-select w-100 polygon-bl-corner"
-                                                (change)="setSizeCode('codeSize'+i)">
+                                                formControlName="size">
                                                 <option value="2" selected>2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
                                             </select>
-                                        </div>
-                                        &nbsp;
-                                        <div class="w-100">
-                                            <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator"
-                                                [class]="challenge.get('row')?.invalid && (challenge.get('row')?.dirty || challenge.get('row')?.touched) ? 'invalid':''">
-                                                <button type="button"
-                                                    class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner"
-                                                    (click)="generateCode(challenge.get('row'))">Generate</button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +136,7 @@
                                     <div class="w-100 d-flex align-items-center ms-2">
                                         <div class="w-100 custom-input-decorator">
                                             <select [id]="'selectLogo'+i" class="custom-input form-select w-100"
-                                                (change)="undateDecorator('selectLogo'+i, challenge.get('decorator'))">
+                                                (change)="updateDecorator('selectLogo'+i, challenge.get('decorator'))">
                                                 <option value="DATAMINE_V1" selected>DATAMINE_V1</option>
                                                 <option value="DATAMINE_V2">DATAMINE_V2</option>
                                                 <option value="DATAMINE_V3">DATAMINE_V3</option>
@@ -191,22 +176,32 @@
                     </div>
                 </ng-container>
             </ng-container>
-            <div class="w-100">
-                <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator">
-                    <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner"
-                        (click)="addChallenge()">add</button>
+            <div class="w-100 d-flex">
+                <div class="w-100">
+                    <div class="btn-custom-decorator yello-styles  polygon-bl-corner-decorator">
+                        <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-bl-corner"
+                            (click)="addChallenge()">Add Challenge</button>
+                    </div>
+                </div>
+                &nbsp;
+                <div class="w-100">
+                    <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator">
+                        <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner"
+                            (click)="generate()">Generate Matrix And Code</button>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-    <!-- <pre>{{levelFrom.getRawValue() | json}}</pre> -->
+    <pre>{{levelFrom.getRawValue() | json}}</pre>
 </div>
 <div class="modal-footer polygon-br-corner">
     <div class="btn-custom-decorator">
         <button type="button" class="btn btn-custom" (click)="modal.close('Close click')">Close</button>
     </div>
     <div class="polygon-br-corner-decorator btn-custom-decorator" [class]="levelFrom.invalid? 'disabled': ''">
-        <button type="button" class="btn btn-custom polygon-br-corner" [disabled]="levelFrom.invalid" (click)="submit()">
+        <button type="button" class="btn btn-custom polygon-br-corner" [disabled]="levelFrom.invalid"
+            (click)="submit()">
             Save
         </button>
     </div>

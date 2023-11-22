@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Challenge, Level, Matrix } from 'src/app/models/comon.model';
-import { MatrixLevelGeneratorService } from 'src/app/service/matrix-level-generator.service';
+import { LevelGeneratorService } from 'src/app/service/level-generator.service';
 
 @Component({
   selector: 'app-game',
@@ -33,7 +33,7 @@ export class GameComponent implements OnInit {
   level!: Level;
 
   constructor(
-    private levelGenerator: MatrixLevelGeneratorService,
+    private levelGeneratorService: LevelGeneratorService,
     private router: Router
   ) {
     const input = this.router.getCurrentNavigation()?.extras.state;
@@ -43,7 +43,6 @@ export class GameComponent implements OnInit {
     } else {
       this.id = 'auto';
     }
-
   }
 
   ngOnInit(): void {
@@ -54,7 +53,7 @@ export class GameComponent implements OnInit {
     if (lastLevel) {
       this.level = lastLevel;
     } else if (id == 'auto') {
-      this.level = this.levelGenerator.autoLevel(this.difficulty);
+      this.level = this.levelGeneratorService.autoLevel(this.difficulty);
     }
 
     this.lastLevel = structuredClone(this.level);
@@ -237,13 +236,9 @@ export class GameComponent implements OnInit {
     });
   }
 
-  tryAgain(regen: boolean) {
+  tryAgain() {
     this.resetGame();
-    if (regen) {
-      this.loaderLevel('auto')
-    } else {
-      this.loaderLevel('auto', this.lastLevel)
-    }
+    this.loaderLevel('auto', this.lastLevel)
   }
 
   nextLevel() {

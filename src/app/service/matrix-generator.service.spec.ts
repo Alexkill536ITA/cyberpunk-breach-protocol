@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MatrixLevelGeneratorService } from './matrix-level-generator.service';
+import { MatrixGeneratorService } from './matrix-generator.service';
 
 describe('MatrixLevelGeneratorService', () => {
-  let service: MatrixLevelGeneratorService;
+  let service: MatrixGeneratorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MatrixLevelGeneratorService);
+    service = TestBed.inject(MatrixGeneratorService);
   });
 
   it('should be created', () => {
