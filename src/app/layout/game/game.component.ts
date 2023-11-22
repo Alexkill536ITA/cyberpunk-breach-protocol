@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Challenge, Level, Matrix } from 'src/app/models/comon.model';
 import { LevelGeneratorService } from 'src/app/service/level-generator.service';
