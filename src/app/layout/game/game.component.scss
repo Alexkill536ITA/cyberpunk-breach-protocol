@@ -22,6 +22,10 @@
     }
 }
 
+:host ::ng-deep .hoverBoxCode-active {
+    border: solid 1px $yello-color !important;
+}
+
 .game-container {
     width: 100%;
     height: 100%;

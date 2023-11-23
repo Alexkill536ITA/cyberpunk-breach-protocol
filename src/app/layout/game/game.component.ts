@@ -10,7 +10,7 @@ import { LevelGeneratorService } from 'src/app/service/level-generator.service';
 })
 export class GameComponent implements OnInit {
 
-  notRun = true;
+  public notRun = true;
   interval: any;
   progresBar: number = 100;
   positionReadBuffer: number = 0;
@@ -128,7 +128,15 @@ export class GameComponent implements OnInit {
             }
           } else {
             let elementRow = document.getElementById(challenge.id);
-            elementRow?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
+            if (challenge.read > 0) {
+              for (let index = 0; index <= challenge.read; index++) {
+                elementRow?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
+              }
+            } else {
+              elementRow?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
+            }
+            challenge.read = 0;
+            challenge.row.forEach((item) => { item.resolve = false });
           }
         } else {
           challenge.fail = true;

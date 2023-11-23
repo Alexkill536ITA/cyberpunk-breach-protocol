@@ -77,7 +77,7 @@
                     <div class="d-flex row-matrix" *ngFor="let row of matrix; let y = index">
                         <div *ngFor="let col of row; let x = index">
                             <ng-container *ngIf="!col.select;else selected">
-                                <button [id]="y+'-'+x" type="button" class="btn button-game"
+                                <button [id]="y+'-'+x" type="button" class="btn button-game hoverBoxCode"
                                     (click)="pushSelectValue(y+'-'+x,col.value)" [disabled]="col.disabled">
                                     <span class="button-game-text">{{col.value |uppercase}}</span>
                                 </button>
@@ -105,7 +105,7 @@
                     <div class="row code-row" *ngFor="let item of code">
                         <div class="col-6">
                             <div class="code-challenge" [id]="item.id">
-                                <div *ngFor="let col of item.row">
+                                <div *ngFor="let col of item.row" hoverBoxCodeDirective [hoverBoxCode]="col.value">
                                     <label class="label-game" [ngClass]="col.resolve? 'label-game-resolve':''">
                                         {{col.value|uppercase}}
                                     </label>
@@ -140,7 +140,7 @@
                 </div>
             </ng-container>
             <ng-template #endGameMenu>
-                <div class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
+                <div *ngIf="id == 'auto'" class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
                     <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="nextLevel()">
                         Next Level
                     </button>

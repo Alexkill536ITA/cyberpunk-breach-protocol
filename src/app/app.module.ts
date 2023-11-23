@@ -9,7 +9,7 @@ import { BuilderLevelModule } from "./layout/builder-level/builder-level.module"
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
