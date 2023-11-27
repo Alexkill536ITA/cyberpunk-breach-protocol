@@ -7,6 +7,7 @@ import { MakerLevelModule } from "../../modules/maker-level/maker-level.module";
 import { MatrixListShowModule } from "../../modules/matrix-list-show/matrix-list-show.module";
 import { RouterModule } from '@angular/router';
 import { ControlerSqllite3Service } from 'src/app/service/controler-sqllite3.service';
+import { AudioControlMolude } from 'src/app/directive/common-audio.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ControlerSqllite3Service } from 'src/app/service/controler-sqllite3.ser
     ButtonModule,
     MatrixListShowModule,
     MakerLevelModule,
-    RouterModule
+    RouterModule,
+    AudioControlMolude
   ],
   exports: [
     BuilderLevelComponent

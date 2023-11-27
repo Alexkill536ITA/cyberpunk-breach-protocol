@@ -18,7 +18,7 @@
       <div class="col-6">
         <div class="btn-custom-decorator yello-styles polygon-bl-corner-decorator mb-3">
           <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-bl-corner" [routerLink]="'game'"
-            [routerLinkActive]="'active'">
+            [routerLinkActive]="'active'" hoverSoundPlayDirective clickSoundPlayDirective>
             Play Game
           </button>
         </div>
@@ -26,20 +26,20 @@
       <div class="col-6">
         <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator">
           <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner"
-            [routerLink]="'editorlevel'" [routerLinkActive]="'active'">
+            [routerLink]="'editorlevel'" [routerLinkActive]="'active'" hoverSoundPlayDirective clickSoundPlayDirective>
             Editor Level
           </button>
         </div>
       </div>
       <div class="col-12">
         <div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator">
-          <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner" (click)="exitApp()">
+          <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner" (click)="exitApp()"
+            hoverSoundPlayDirective clickSoundPlayDirective>
             Exit
           </button>
         </div>
       </div>
     </div>
-
   </div>
   <div class="hide">
     <svg id="svgGlitch" class="" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 694.75 170.94">

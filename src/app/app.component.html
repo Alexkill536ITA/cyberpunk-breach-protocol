@@ -1,3 +1,13 @@
+<div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator mute">
+    <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner" (click)="muteControl()"
+        hoverSoundPlayDirective clickSoundPlayDirective>
+        <i class="bi" [class]="mute? 'bi-volume-up-fill':'bi-volume-mute-fill'"></i>
+    </button>
+</div>
+<audio autoplay loop #audio>
+    <source [src]="audioPath" type="audio/mp3">
+</audio>
+
 <section class="section-root">
     <router-outlet></router-outlet>
 </section>

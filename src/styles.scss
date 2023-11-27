@@ -191,6 +191,11 @@ body {
     }
 }
 
+.btn-custom:hover {
+    color: $cian-color !important;
+    border: solid 2px $cian-color !important;
+}
+
 .btn-custom:active {
     background-color: $cian-color !important;
     color: $black-color !important;
@@ -204,6 +209,10 @@ body {
     &.yello-styles {
         background-color: $yello-color;
     }
+}
+
+.btn-custom-decorator:hover {
+    background-color: $cian-color;
 }
 
 .btn-custom-decorator:active {

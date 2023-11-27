@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './layout/home/home.module';
 import { GameModule } from './layout/game/game.module';
 import { BuilderLevelModule } from "./layout/builder-level/builder-level.module";
+import { AudioControlMolude } from './directive/common-audio.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BuilderLevelModule } from "./layout/builder-level/builder-level.module"
     GameModule,
     BuilderLevelModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    AudioControlMolude
   ],
   providers: [],
   bootstrap: [AppComponent]

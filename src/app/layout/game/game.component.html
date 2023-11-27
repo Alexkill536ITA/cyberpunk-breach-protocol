@@ -57,34 +57,36 @@
                             <div *ngIf="splashWinsOrFail" class="button-game-exit-background"
                                 [class]="splashWinsOrFail">
                                 <button type="button" class="btn button-game-exit" [class]="splashWinsOrFail"
-                                    [routerLink]="'/'" [routerLinkActive]="'active'">&nbsp;EXIT
+                                    [routerLink]="'/'" [routerLinkActive]="'active'" hoverSoundPlayDirective clickSoundPlayDirective>&nbsp;EXIT
                                     INTERFACE</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="code-matrix-container">
-                    <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
-                    <span>CODE MATRIX</span>
-                </div>
-                <!-- TODO Creare hover di guida riga colonna -->
-                <!-- <div class="container-hover-line-col">
+                <div class="box-closable-game" [class]="splashWinsOrFail? 'colapse': ''">
+                    <div class="code-matrix-container">
+                        <img src="assets/img/icon-code-matrix.png" class="icon-code-matrix-game">
+                        <span>CODE MATRIX</span>
+                    </div>
+                    <!-- TODO Creare hover di guida riga colonna -->
+                    <!-- <div class="container-hover-line-col">
                 <div class="hover-line" [id]="'hover'+y" *ngFor="let row of matrix; let y = index">
                     <div class="hover-col" [id]="'hover'+x" *ngFor="let col of row"></div>
                 </div>
             </div> -->
-                <div class="box">
-                    <div class="d-flex row-matrix" *ngFor="let row of matrix; let y = index">
-                        <div *ngFor="let col of row; let x = index">
-                            <ng-container *ngIf="!col.select;else selected">
-                                <button [id]="y+'-'+x" type="button" class="btn button-game hoverBoxCode"
-                                    (click)="pushSelectValue(y+'-'+x,col.value)" [disabled]="col.disabled">
-                                    <span class="button-game-text">{{col.value |uppercase}}</span>
-                                </button>
-                            </ng-container>
-                            <ng-template #selected>
-                                <label class="btn button-game button-game-selected">[&nbsp;&nbsp;]</label>
-                            </ng-template>
+                    <div class="box">
+                        <div class="d-flex row-matrix" *ngFor="let row of matrix; let y = index">
+                            <div *ngFor="let col of row; let x = index">
+                                <ng-container *ngIf="!col.select;else selected">
+                                    <button [id]="y+'-'+x" type="button" class="btn button-game hoverBoxCode"
+                                        (click)="pushSelectValue(y+'-'+x,col.value)" [disabled]="col.disabled">
+                                        <span class="button-game-text">{{col.value |uppercase}}</span>
+                                    </button>
+                                </ng-container>
+                                <ng-template #selected>
+                                    <label class="btn button-game button-game-selected">[&nbsp;&nbsp;]</label>
+                                </ng-template>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -134,14 +136,14 @@
         <div *ngIf="splashWinsOrFail" class="d-flex w-100 justify-content-end">
             <ng-container *ngIf="splashWinsOrFail == 'fail';else endGameMenu">
                 <div class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
-                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="tryAgain()">
+                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="tryAgain()" hoverSoundPlayDirective clickSoundPlayDirective>
                         Try Again
                     </button>
                 </div>
             </ng-container>
             <ng-template #endGameMenu>
                 <div *ngIf="id == 'auto'" class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
-                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="nextLevel()">
+                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="nextLevel()" hoverSoundPlayDirective clickSoundPlayDirective>
                         Next Level
                     </button>
                 </div>

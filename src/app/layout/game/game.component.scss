@@ -248,6 +248,16 @@
         }
     }
 
+    .box-closable-game {
+        height: 100%;
+        overflow: hidden;
+        transition: height 0.5s ease 0s;
+
+        &.colapse {
+            height: 0%;
+        }
+    }
+
     .button-game-exit-background {
         margin-top: 1rem;
         clip-path: polygon(0 0, 100% 0, 100% 74%, 91% 100%, 0 100%);
