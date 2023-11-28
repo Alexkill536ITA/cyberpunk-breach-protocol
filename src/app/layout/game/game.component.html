@@ -57,7 +57,8 @@
                             <div *ngIf="splashWinsOrFail" class="button-game-exit-background"
                                 [class]="splashWinsOrFail">
                                 <button type="button" class="btn button-game-exit" [class]="splashWinsOrFail"
-                                    [routerLink]="'/'" [routerLinkActive]="'active'" hoverSoundPlayDirective clickSoundPlayDirective>&nbsp;EXIT
+                                    [routerLink]="'/'" [routerLinkActive]="'active'" hoverSoundPlayDirective
+                                    clickSoundPlayDirective>&nbsp;EXIT
                                     INTERFACE</button>
                             </div>
                         </div>
@@ -120,8 +121,11 @@
                             <div class="code-text">
                                 <h5 class="code-title" [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">
                                     {{item.decorator.title}}</h5>
-                                <label class="code-label"
-                                    [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">{{item.decorator.description}}</label>
+                                <div class="scroll-left">
+                                    <label class="code-label" [class]="item.resolve? 'resolve': item.fail? 'fail': ''">
+                                        {{item.decorator.description}}
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 code-result" [ngClass]="item.resolve? 'resolve': item.fail? 'fail': ''">
@@ -136,14 +140,16 @@
         <div *ngIf="splashWinsOrFail" class="d-flex w-100 justify-content-end">
             <ng-container *ngIf="splashWinsOrFail == 'fail';else endGameMenu">
                 <div class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
-                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="tryAgain()" hoverSoundPlayDirective clickSoundPlayDirective>
+                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="tryAgain()"
+                        hoverSoundPlayDirective clickSoundPlayDirective>
                         Try Again
                     </button>
                 </div>
             </ng-container>
             <ng-template #endGameMenu>
                 <div *ngIf="id == 'auto'" class="btn-custom-decorator polygon-br-corner-decorator yello-styles">
-                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="nextLevel()" hoverSoundPlayDirective clickSoundPlayDirective>
+                    <button type="button" class="btn btn-custom yello-styles polygon-br-corner" (click)="nextLevel()"
+                        hoverSoundPlayDirective clickSoundPlayDirective>
                         Next Level
                     </button>
                 </div>
