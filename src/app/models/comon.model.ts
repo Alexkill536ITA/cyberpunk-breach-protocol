@@ -66,3 +66,8 @@ export enum ElectronAction {
 export enum ElectronEvent {
     GOT_NEW_REQUEST = 'GOT_NEW_REQUEST'
 }
+
+export enum MusicList {
+    MAIN_THEME = './assets/audio/01 - Marcin Przybylowicz - V.mp3',
+    GAME_MUSIC = ''
+}

@@ -1,9 +1,23 @@
-<div class="btn-custom-decorator yello-styles  polygon-br-corner-decorator mute">
-    <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-br-corner" (click)="muteControl()"
-        hoverSoundPlayDirective clickSoundPlayDirective>
-        <i class="bi" [class]="mute? 'bi-volume-up-fill':'bi-volume-mute-fill'"></i>
-    </button>
+<div class="auido-control">
+    <div class="btn-custom-decorator yello-styles  polygon-tl-corner-decorator btn-mute">
+        <button type="button" class="w-100 p-1 btn btn-custom yello-styles polygon-tl-corner"
+            (click)="volumeControl($event)" hoverSoundPlayDirective clickSoundPlayDirective>
+            <i *ngIf="!mute;else muteicon" class="bi"
+                [class]="volume == 0? 'bi-volume-off-fill': volume < 0.5? 'bi-volume-down-fill' :'bi-volume-up-fill'"></i>
+            <ng-template #muteicon>
+                <i class="bi bi-volume-mute-fill mt-1"></i>
+            </ng-template>
+        </button>
+    </div>
+    &nbsp;
+    <div class="auido-control-menu">
+        <div class="custom-input-decorator w-100">
+            <input class="slider custom-input polygon-br-corner" type="range" min="0" max="1" [value]="volume"
+                step="0.05" (change)="volumeControl($event)">
+        </div>
+    </div>
 </div>
+
 <audio autoplay loop #audio>
     <source [src]="audioPath" type="audio/mp3">
 </audio>

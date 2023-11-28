@@ -112,31 +112,43 @@ export class GameComponent implements OnInit {
     let currentValueBuffer = this.buffer[this.positionReadBuffer].value;
     let bufferEmpty = this.buffer.filter((el) => { return el.value === null }).length + 1;
     this.code.forEach((challenge) => {
+      // Check Challenge already has an outcome
       if (challenge.resolve != true && challenge.fail != true) {
         let notResolve = challenge.row.filter((el) => { return el.resolve === false }).length;
+        // Check challenge code can stay in the buffer
         if (notResolve <= bufferEmpty) {
           let item = challenge.row[challenge.read];
+          // Check value select include to challenge item
           if (item.value == currentValueBuffer) {
+            // Success mech
             item.resolve = true;
             challenge.read++;
             let resolve = challenge.row.filter((el) => {
               return el.resolve == true;
             });
+            // Pariti check solve code
             if (resolve.length == challenge.row.length) {
               challenge.resolve = true;
               this.sesolveRegister++;
             }
           } else {
+            // Faill mach
             let elementRow = document.getElementById(challenge.id);
-            if (challenge.read > 0) {
-              for (let index = 0; index <= challenge.read; index++) {
+            // Last mach is valid
+            if (challenge.row[challenge.read - 1] && challenge.row[challenge.read - 1].value == currentValueBuffer) {
+              elementRow?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
+            } else {
+              // Control add space fail code
+              if (challenge.read > 0) {
+                for (let index = 0; index <= challenge.read; index++) {
+                  elementRow?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
+                }
+              } else {
                 elementRow?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
               }
-            } else {
-              elementRow?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
+              challenge.read = 0;
+              challenge.row.forEach((item) => { item.resolve = false });
             }
-            challenge.read = 0;
-            challenge.row.forEach((item) => { item.resolve = false });
           }
         } else {
           challenge.fail = true;
@@ -144,6 +156,7 @@ export class GameComponent implements OnInit {
         }
       }
     });
+
     let elementColHover = document.getElementById('CodeColHover');
     elementColHover?.insertAdjacentHTML('afterbegin', `<div class="space-code">&nbsp;</div>`);
     this.positionReadBuffer++;

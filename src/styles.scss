@@ -129,8 +129,6 @@ body {
     background-color: $black-color;
     border: solid 2px $yello-color;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.2rem), calc(100% - 1.2rem) 100%, 0 100%);
-
-
 }
 
 .custom-input-decorator {
@@ -230,7 +228,7 @@ body {
     appearance: none;
     width: 100%;
     height: 40px;
-    background: transparent;
+    background: $black-color;
     outline: none;
     -webkit-transition: .2s;
     transition: opacity .2s;
@@ -267,6 +265,16 @@ body {
 .slider::-moz-range-thumb:hover {
     transition: background-color .15s ease-in-out;
     background: $cian-color;
+}
+
+.slider:active {
+    transition: border-color .15s ease-in-out;
+    border-color: $cian-color;
+}
+
+.slider:active {
+    transition: border-color .15s ease-in-out;
+    border-color: $cian-color;
 }
 
 .slider-text {

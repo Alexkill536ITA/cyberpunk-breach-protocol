@@ -1,10 +1,45 @@
 @import "../styles/variables.scss";
 
-.mute {
-    width: 40px;
-    height: 40px;
+.auido-control {
     z-index: 1000;
+    height: 40px;
     position: absolute;
     bottom: 5px;
-    right: 5px;
+    left: 5px;
+    display: flex;
+}
+
+.auido-control:hover {
+    .auido-control-menu {
+        width: 15rem;
+    }
+}
+
+.auido-control-menu {
+    display: flex;
+    overflow: hidden;
+    width: 0px;
+    height: 40px;
+    transition: width 0.5s ease;
+    margin-bottom: 0.5rem;
+}
+
+.bi::before {
+    vertical-align: -5px;
+}
+
+.text-volume {
+    color: $yello-color;
+    font-family: Rajdhani-Bold;
+}
+
+.slider-decorator {
+    height: inherit;
+    border: solid 2px $yello-color;
+    background-color: $black-color;
+}
+
+.btn-mute {
+    width: 40px;
+    height: 40px;
 }

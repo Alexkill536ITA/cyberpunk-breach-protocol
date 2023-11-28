@@ -20,22 +20,22 @@
         </div>
         <div class="row w-100 mb-3">
             <label class="col-6">Set Time left</label>
-            <div class="col-6 position-relative">
-                <div class="slider-text polygon-br-corner-decorator">
-                    <span>{{levelFrom.get('timeLeft')?.value}}s</span>
+            <div class="col-6 position-relative d-flex justify-content-center flex-column">
+                <span class="text-center">{{levelFrom.get('timeLeft')?.value}}s</span>
+                <div class="custom-input-decorator polygon-br-corner-decorator slider-decorator">
+                    <input class="custom-input slider polygon-br-corner" type="range" min="10" max="120" value="30"
+                        step="0.05" formControlName="timeLeft">
                 </div>
-                <input class="custom-input slider polygon-br-corner" type="range" min="10" max="120" value="30"
-                    step="0.05" formControlName="timeLeft">
             </div>
         </div>
         <div class="row w-100 mb-3">
             <label class="col-6">Set Buffer size</label>
-            <div class="col-6 position-relative">
-                <div class="slider-text polygon-br-corner-decorator">
-                    <span>{{levelFrom.get('bufferSize')?.value}}</span>
+            <div class="col-6 position-relative d-flex justify-content-center flex-column">
+                <span class="text-center">{{levelFrom.get('bufferSize')?.value}}</span>
+                <div class="custom-input-decorator polygon-br-corner-decorator slider-decorator">
+                    <input class="custom-input slider polygon-br-corner" type="range" min="4" max="16" value="4"
+                        formControlName="bufferSize">
                 </div>
-                <input class="w-100 custom-input slider polygon-br-corner" type="range" min="4" max="16" value="4"
-                    formControlName="bufferSize">
             </div>
         </div>
         <div class="row w-100 mb-3">
@@ -76,7 +76,7 @@
         <div class="row w-100">
             <h4>Challenge</h4>
             <ng-container formArrayName="code">
-                {{code.controls.length | json}}
+                <!-- {{code.controls.length | json}} -->
                 <ng-container *ngFor="let challenge of code.controls; let i = index">
                     <div class="challenge-form" [formArrayName]="i">
                         <div class="row mb-3">
@@ -165,12 +165,14 @@
                         <div class="mb-3 d-flex justify-content-end">
                             <div class="btn-custom-decorator yello-styles polygon-bl-corner-decorator">
                                 <button type="button" class="w-100 btn btn-custom yello-styles polygon-bl-corner"
-                                    (click)="clearChallenge('selectLogo'+i, challenge)" hoverSoundPlayDirective clickSoundPlayDirective>Clear</button>
+                                    (click)="clearChallenge('selectLogo'+i, challenge)" hoverSoundPlayDirective
+                                    clickSoundPlayDirective>Clear</button>
                             </div>
                             &nbsp;
                             <div class="btn-custom-decorator yello-styles polygon-br-corner-decorator">
                                 <button type="button" class="w-100 btn btn-custom yello-styles polygon-br-corner"
-                                    (click)="removeChallenge(i)" hoverSoundPlayDirective clickSoundPlayDirective>Delete</button>
+                                    (click)="removeChallenge(i)" hoverSoundPlayDirective
+                                    clickSoundPlayDirective>Delete</button>
                             </div>
                         </div>
                     </div>
@@ -195,7 +197,7 @@
             </div>
         </div>
     </form>
-    <pre>{{levelFrom.getRawValue() | json}}</pre>
+    <!-- <pre>{{levelFrom.getRawValue() | json}}</pre> -->
 </div>
 <div class="modal-footer polygon-br-corner">
     <div class="btn-custom-decorator">
