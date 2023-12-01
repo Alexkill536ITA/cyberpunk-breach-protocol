@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Challenge, Level, Matrix } from 'src/app/models/comon.model';
+import { Challenge, Level, Matrix, MusicList } from 'src/app/models/comon.model';
+import { AudioControlService } from 'src/app/service/audio-control.service';
 import { LevelGeneratorService } from 'src/app/service/level-generator.service';
 
 @Component({
@@ -8,7 +9,12 @@ import { LevelGeneratorService } from 'src/app/service/level-generator.service';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('audioFX') audioFX?: ElementRef;
+  audioPathFX: string = './assets/audio/Init_breach_protocol_FX.mp3';
+  volume$ = this.audioControlService.volume$;
+  volume: number = 0.5;
 
   public notRun = true;
   interval: any;
@@ -34,7 +40,8 @@ export class GameComponent implements OnInit {
 
   constructor(
     private levelGeneratorService: LevelGeneratorService,
-    private router: Router
+    private router: Router,
+    protected audioControlService: AudioControlService
   ) {
     const input = this.router.getCurrentNavigation()?.extras.state;
     if (input) {
@@ -43,10 +50,21 @@ export class GameComponent implements OnInit {
     } else {
       this.id = 'auto';
     }
+    this.volume$.subscribe((volume) => {
+      this.volume = volume;
+    });
   }
 
   ngOnInit(): void {
     this.loaderLevel(this.id);
+  }
+
+  ngAfterViewInit(): void {
+    if (this.audioFX) {
+      this.audioFX.nativeElement.play();
+      this.audioFX.nativeElement.volume = this.volume;
+    }
+    this.audioControlService.changeMusic(MusicList.GAME_MUSIC);
   }
 
   loaderLevel(id: string, lastLevel?: Level | null) {
@@ -266,5 +284,9 @@ export class GameComponent implements OnInit {
     this.difficulty++;
     this.resetGame();
     this.loaderLevel('auto');
+  }
+
+  setMusic() {
+    this.audioControlService.changeMusic(MusicList.MAIN_THEME);
   }
 }

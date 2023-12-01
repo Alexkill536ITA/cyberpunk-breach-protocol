@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { AudioControlService } from './service/audio-control.service';
 import { MusicList } from './models/comon.model';
 
@@ -7,9 +7,9 @@ import { MusicList } from './models/comon.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'cyberpunk-hexcode-breach';
-  
+
   @ViewChild('audio') audio?: ElementRef;
   audioPath: string = MusicList.MAIN_THEME;
   music$ = this.audioMuteService.music$;
@@ -37,6 +37,7 @@ export class AppComponent {
     this.music$.subscribe((music) => {
       this.audioPath = music;
       if (this.audio) {
+        this.audio.nativeElement.src = this.audioPath;
         this.audio.nativeElement.play();
         this.audio.nativeElement.volume = this.volume;
       }

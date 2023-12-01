@@ -57,7 +57,7 @@
                             <div *ngIf="splashWinsOrFail" class="button-game-exit-background"
                                 [class]="splashWinsOrFail">
                                 <button type="button" class="btn button-game-exit" [class]="splashWinsOrFail"
-                                    [routerLink]="'/'" [routerLinkActive]="'active'" hoverSoundPlayDirective
+                                    [routerLink]="'/'" [routerLinkActive]="'active'" (click)="setMusic()" hoverSoundPlayDirective
                                     clickSoundPlayDirective>&nbsp;EXIT
                                     INTERFACE</button>
                             </div>
@@ -157,3 +157,7 @@
         </div>
     </div>
 </div>
+
+<audio autoplay #audioFX>
+    <source [src]="audioPathFX" type="audio/mp3">
+</audio>

@@ -69,5 +69,5 @@ export enum ElectronEvent {
 
 export enum MusicList {
     MAIN_THEME = './assets/audio/01 - Marcin Przybylowicz - V.mp3',
-    GAME_MUSIC = ''
+    GAME_MUSIC = './assets/audio/Cyberpunk 2077  Breach_Protocol.mp3'
 }
