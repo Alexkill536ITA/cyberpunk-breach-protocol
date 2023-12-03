@@ -12,15 +12,15 @@ This project was born with the purpose of creating a tool that would be training
 
 ###### Game
 
-![game-screen](preview\game-screen.png)
+![game-screen](./preview/game-screen.png)
 
 ###### Custom Level List
 
-![custom-level-screen](preview\custom-level-screen.png)
+![custom-level-screen](./preview/custom-level-screen.png)
 
 ###### Editor Level
 
-![edit-level-dialog](preview\edit-level-dialog.png)
+![edit-level-dialog](./preview/edit-level-dialog.png)
 
 ## Development
 
