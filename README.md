@@ -8,7 +8,7 @@ This project was born with the purpose of creating a tool that would be training
 
 ###### Menu
 
-![menu-screen](preview\menu-screen.png)
+![menu-screen](.\preview\menu-screen.png)
 
 ###### Game
 
