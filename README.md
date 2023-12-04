@@ -6,6 +6,14 @@ This is a fun made replica of the Breach protocol minigame from Cyberpunk 2077®
 The repilica was made based on version 2.0 of the original game and tries to be as faithful to the original as possible.
 This project was born with the purpose of creating a tool that would be training for digital gaming and to be used in Cyberpunk 2020® and Cyberpunk RED® role-playing game campaigns as well.
 
+### Features:
+
+* Play Original Game
+* Incremental Dificulty
+* Infiniti Play
+* Make Custom Level
+* Platform Support Windows / MacOS / Linux
+
 ###### Menu
 
 ![menu-screen](./preview/menu-screen.png)
