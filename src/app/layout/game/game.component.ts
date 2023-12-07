@@ -207,6 +207,7 @@ export class GameComponent implements OnInit, AfterViewInit {
   matrixButtonController(id: string) {
     const coordinate = id.split('-');
     this.matrix[parseInt(coordinate[0])][parseInt(coordinate[1])].select = true;
+    this.matrix[parseInt(coordinate[0])][parseInt(coordinate[1])].disabled = true;
 
     if (this.marixReadHistoy == 'row') {
       this.marixReadHistoy = 'col';

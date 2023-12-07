@@ -155,6 +155,10 @@ body {
     }
 }
 
+.btn {
+    cursor: url($cursor-md), pointer !important;
+}
+
 .btn-custom {
     padding: 0.5rem 1.5rem !important;
     border-radius: 0 !important;
@@ -221,7 +225,6 @@ body {
         background-color: $cian-color;
     }
 }
-
 
 .slider {
     -webkit-appearance: none;
