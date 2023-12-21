@@ -88,6 +88,11 @@ export class GameComponent implements OnInit, AfterViewInit {
     for (let index = 0; index < this.bufferSize; index++) {
       this.buffer.push({ value: null, focused: false, resolve: false });
     }
+
+    setTimeout(() => {
+      const elementLine = document.getElementById('hover-y-0');
+      elementLine?.setAttribute('class', 'hover-line active');
+    }, 100);
   }
 
   startTimer() {
@@ -208,6 +213,8 @@ export class GameComponent implements OnInit, AfterViewInit {
     const coordinate = id.split('-');
     this.matrix[parseInt(coordinate[0])][parseInt(coordinate[1])].select = true;
     this.matrix[parseInt(coordinate[0])][parseInt(coordinate[1])].disabled = true;
+    let elementLine = document.getElementById('hover-y-' + coordinate[0]);
+    let elementCol = document.getElementById('hover-x-' + coordinate[1]);
 
     if (this.marixReadHistoy == 'row') {
       this.marixReadHistoy = 'col';
@@ -215,14 +222,37 @@ export class GameComponent implements OnInit, AfterViewInit {
       this.matrix[parseInt(coordinate[0])].forEach((el: any) => {
         el.disabled = false;
       });
+      elementLine?.setAttribute('class', 'hover-line active');
+      elementCol?.setAttribute('class', 'hover-col');
     } else if (this.marixReadHistoy == 'col') {
       this.marixReadHistoy = 'row';
       this.matrixFullDisable();
       for (let index = 0; index < this.matrix.length; index++) {
         this.matrix[index][parseInt(coordinate[1])].disabled = false;
       }
+      elementLine?.setAttribute('class', 'hover-line');
+      elementCol?.setAttribute('class', 'hover-col active');
     }
+  }
 
+  updateHoverShow(y: number, x: number) {
+    if (this.marixReadHistoy == 'col') {
+      let elementCol = document.getElementById('hover-x-' + x);
+      elementCol?.setAttribute('class', 'hover-col hover');
+    } else {
+      let elementLine = document.getElementById('hover-y-' + y);
+      elementLine?.setAttribute('class', 'hover-line hover');
+    }
+  }
+
+  resetHoverShow(y: number, x: number) {
+    if (this.marixReadHistoy == 'col') {
+      let elementCol = document.getElementById('hover-x-' + x);
+      elementCol?.setAttribute('class', 'hover-col');
+    } else {
+      let elementLine = document.getElementById('hover-y-' + y);
+      elementLine?.setAttribute('class', 'hover-line');
+    }
   }
 
   checkWins(forceFail?: boolean, failText?: string) {

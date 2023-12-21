@@ -48,10 +48,11 @@
     border: double 1px $cian-color;
     outline: double 1px $cian-color;
     outline-offset: 3px;
-    background-color: rgba(37, 255, 255, 0.2);
+    background-color: rgba(37, 255, 255, 0.25);
     -webkit-box-shadow: 0px 0px 10px 5px rgba(37, 255, 255, 0.6);
     -moz-box-shadow: 0px 0px 10px 5px rgba(37, 255, 255, 0.6);
     box-shadow: 0px 0px 10px 5px rgba(37, 255, 255, 0.6);
+    color: $cian-color;
 }
 
 .button-game:active {
@@ -252,6 +253,7 @@
         height: 100%;
         overflow: hidden;
         transition: height 0.5s ease 0s;
+        position: relative;
 
         &.colapse {
             height: 0%;
@@ -349,11 +351,20 @@
         }
     }
 
-    .container-hover-line-col {
-        position: fixed;
-        width: inherit;
-        height: inherit;
-        padding: 1rem 1rem 1rem 0rem;
+    .container-hover-line {
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 45px);
+        padding: 1rem 0rem 1rem 0rem;
+    }
+
+    .container-hover-col {
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 45px);
+        padding: 0rem 1rem 0rem 1rem;
+        display: flex;
+        justify-content: center;
     }
 
     .hover-line {
@@ -365,18 +376,8 @@
     }
 
     .hover-col {
-        width: 55px;
-        height: 55px;
-    }
-
-    .hover-col .hover-line {
-        &.active {
-            background-color: rgba(170, 170, 190, 0.2);
-        }
-
-        &.hover {
-            background-color: rgba(220, 255, 95, 0.2);
-        }
+        width: 53px;
+        height: 100%;
     }
 
     @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
@@ -395,6 +396,26 @@
 
         }
 
+    }
+}
+
+.hover-line {
+    &.active {
+        background-color: rgba(170, 170, 190, 0.2);
+    }
+
+    &.hover {
+        background-color: rgba(220, 255, 95, 0.2);
+    }
+}
+
+.hover-col {
+    &.active {
+        background-color: rgba(170, 170, 190, 0.2);
+    }
+
+    &.hover {
+        background-color: rgba(220, 255, 95, 0.2);
     }
 }
 
