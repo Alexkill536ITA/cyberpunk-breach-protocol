@@ -30,6 +30,10 @@ This project was born with the purpose of creating a tool that would be training
 
 ![edit-level-dialog](./preview/edit-level-dialog.png)
 
+## Release
+
+Versione V1.0: 
+
 ## Development
 
 ### Dependencies:
