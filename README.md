@@ -32,7 +32,7 @@ This project was born with the purpose of creating a tool that would be training
 
 ## Release
 
-Versione V1.0: 
+Versione V1.0: [Download](https://github.com/Alexkill536ITA/cyberpunk-hexcode-breach/releases/tag/Release-V1)
 
 ## Development
 
