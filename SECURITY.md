@@ -2,8 +2,8 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Support for upgrades is not graranted.
+It is pregra to create a bug hunting issius with the possible solution of the vulnerability.
 
 | Version | Supported          |
 | ------- | ------------------ |
@@ -11,8 +11,11 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+To report bugs use the issues form,
+Which must contain the following basic infromaction:
+  * Security bug description
+  * CVE
+  * Compromised code
+  * Troubleshooting code or procedure fix vulnerability
+  * Machine data and version dependencies used
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
