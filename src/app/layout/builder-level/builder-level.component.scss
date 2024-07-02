@@ -62,6 +62,14 @@
     background-color: $cian-color;
 }
 
+.btn:hover {
+    background-color: darken($cian-color, 50%);
+}
+
+.btn:active{
+    background-color: $cian-color;
+}
+
 .btn-decorator {
     clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
     transition: background-color .15s ease-in-out;

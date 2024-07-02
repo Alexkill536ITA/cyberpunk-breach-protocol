@@ -31,3 +31,11 @@
 .slider-decorator {
     height: 40px;
 }
+
+.btn-custom:hover {
+    background-color: darken($cian-color, 50%) !important;
+}
+
+.btn-custom:active{
+    background-color: $cian-color !important;
+}

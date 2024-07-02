@@ -196,6 +196,7 @@ body {
 .btn-custom:hover {
     color: $cian-color !important;
     border: solid 2px $cian-color !important;
+    background-color: darken($cian-color, 50%) !important;
 }
 
 .btn-custom:active {
