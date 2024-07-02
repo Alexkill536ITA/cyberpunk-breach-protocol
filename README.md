@@ -40,15 +40,15 @@ This project was born with the purpose of creating a tool that would be training
 
 ## Release
 
-Versione V1.0: [Download](https://github.com/Alexkill536ITA/cyberpunk-hexcode-breach/releases/tag/Release-V1)
+Versione V1.0: [Download](https://github.com/Alexkill536ITA/cyberpunk-hexcode-breach/releases/tag/Release-V1.0.1)
 
 ## Development
 
 ### Dependencies:
 
-* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
+* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
 * Used [Node.js](https://nodejs.org/en) version [20.10.0 Iron](https://nodejs.org/download/release/v20.10.0/).
-* Include Module [Electron](https://www.electronjs.org/docs/latest/) framework version 27.1.0.
+* Include Module [Electron](https://www.electronjs.org/docs/latest/) framework version 31.1.0.
 
 Install NPM dependencies use comand `npm i`
 
