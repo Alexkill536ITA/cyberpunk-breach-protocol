@@ -3,9 +3,10 @@ import { ControlerSqllite3Service } from "../../service/controler-sqllite3.servi
 import { ElectronAction } from 'src/app/models/comon.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: false
 })
 export class HomeComponent {
 

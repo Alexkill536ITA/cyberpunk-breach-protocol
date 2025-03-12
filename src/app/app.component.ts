@@ -3,9 +3,10 @@ import { AudioControlService } from './service/audio-control.service';
 import { MusicList } from './models/comon.model';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements AfterViewInit {
   title = 'cyberpunk-hexcode-breach';

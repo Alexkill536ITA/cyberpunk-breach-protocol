@@ -5,9 +5,10 @@ import { AudioControlService } from 'src/app/service/audio-control.service';
 import { LevelGeneratorService } from 'src/app/service/level-generator.service';
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+    selector: 'app-game',
+    templateUrl: './game.component.html',
+    styleUrls: ['./game.component.scss'],
+    standalone: false
 })
 export class GameComponent implements OnInit, AfterViewInit {
 

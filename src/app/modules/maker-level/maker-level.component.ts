@@ -8,9 +8,10 @@ import { MatrixGeneratorService } from 'src/app/service/matrix-generator.service
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
-  selector: 'app-maker-level',
-  templateUrl: './maker-level.component.html',
-  styleUrls: ['./maker-level.component.scss']
+    selector: 'app-maker-level',
+    templateUrl: './maker-level.component.html',
+    styleUrls: ['./maker-level.component.scss'],
+    standalone: false
 })
 export class MakerLevelComponent implements OnInit {
   public onClose: Subject<Level> = new Subject<Level>;

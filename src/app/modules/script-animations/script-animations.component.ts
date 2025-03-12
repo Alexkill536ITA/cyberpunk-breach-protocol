@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-script-animations',
-  templateUrl: './script-animations.component.html',
-  styleUrls: ['./script-animations.component.scss']
+    selector: 'app-script-animations',
+    templateUrl: './script-animations.component.html',
+    styleUrls: ['./script-animations.component.scss'],
+    standalone: false
 })
 export class ScriptAnimationsComponent implements OnInit {
 

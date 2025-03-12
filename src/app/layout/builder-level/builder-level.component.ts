@@ -6,9 +6,10 @@ import { ControlerSqllite3Service } from 'src/app/service/controler-sqllite3.ser
 
 
 @Component({
-  selector: 'app-builder-level',
-  templateUrl: './builder-level.component.html',
-  styleUrls: ['./builder-level.component.scss']
+    selector: 'app-builder-level',
+    templateUrl: './builder-level.component.html',
+    styleUrls: ['./builder-level.component.scss'],
+    standalone: false
 })
 export class BuilderLevelComponent implements OnInit {
 

@@ -2,7 +2,8 @@ import { Directive, HostListener, Input } from '@angular/core';
 import { GameComponent } from "../layout/game/game.component";
 
 @Directive({
-  selector: '[hoverBoxCodeDirective]'
+    selector: '[hoverBoxCodeDirective]',
+    standalone: false
 })
 export class HoverBoxCodeDirective {
 

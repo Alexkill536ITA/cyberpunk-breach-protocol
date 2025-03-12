@@ -2,7 +2,8 @@ import { Directive, HostListener } from '@angular/core';
 import { AudioControlService } from "../service/audio-control.service";
 
 @Directive({
-  selector: '[clickSoundPlayDirective]'
+    selector: '[clickSoundPlayDirective]',
+    standalone: false
 })
 export class ClickSoundPlayDirective {
   audio = new Audio();

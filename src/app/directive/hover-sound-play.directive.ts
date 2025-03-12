@@ -2,7 +2,8 @@ import { Directive, HostListener } from '@angular/core';
 import { AudioControlService } from '../service/audio-control.service';
 
 @Directive({
-  selector: '[hoverSoundPlayDirective]'
+    selector: '[hoverSoundPlayDirective]',
+    standalone: false
 })
 export class HoverSoundPlayDirective {
   audio = new Audio();
