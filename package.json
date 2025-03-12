@@ -33,7 +33,7 @@
     "bootstrap-icons": "^1.11.1",
     "ngx-electron": "^2.2.0",
     "primeicons": "^6.0.1",
-    "primeng": "^16.6.0",
+    "primeng": "^17.18.15",
     "rxjs": "~7.8.0",
     "sequelize": "^6.35.1",
     "sqlite3": "^5.1.6",
