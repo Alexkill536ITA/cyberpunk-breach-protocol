@@ -1,4 +1,5 @@
-@import "../../../styles/variables.scss";
+@use "sass:color";
+@use "../../../styles/variables.scss" as *;
 
 .root-container {
     width: 100%;
@@ -56,7 +57,7 @@
 }
 
 .button-game:active {
-    color: darken($cian-color, 25%);
+    color: color.adjust($cian-color, $lightness: -25%);
     background-color: $cian-color;
     -webkit-box-shadow: 0px 0px 12px 3px rgba(37, 255, 255, 0.9);
     -moz-box-shadow: 0px 0px 12px 3px rgba(37, 255, 255, 0.9);
@@ -221,13 +222,13 @@
             &.resolve {
                 border: solid 1px $green-color;
                 color: $green-color;
-                background-color: darken($green-color, 40%);
+                background-color: color.adjust($green-color, $lightness: -40%);
             }
 
             &.fail {
                 border: solid 1px $red-color;
                 color: $red-color;
-                background-color: darken($red-color, 55%);
+                background-color: color.adjust($red-color, $lightness: -55%);
             }
         }
 
@@ -240,11 +241,11 @@
             font-size: 1rem;
 
             &.resolve span {
-                color: darken($green-color, 40%);
+                color: color.adjust($green-color, $lightness: -40%);
             }
 
             &.fail span {
-                color: darken($red-color, 55%);
+                color: color.adjust($red-color, $lightness: -55%);
             }
         }
     }
@@ -265,13 +266,13 @@
         clip-path: polygon(0 0, 100% 0, 100% 74%, 91% 100%, 0 100%);
 
         &.resolve {
-            border: solid 1px darken($green-color, 40%);
-            background-color: darken($green-color, 40%);
+            border: solid 1px color.adjust($green-color, $lightness: -40%);
+            background-color: color.adjust($green-color, $lightness: -40%);
         }
 
         &.fail {
-            border: solid 1px darken($red-color, 55%);
-            background-color: darken($red-color, 55%);
+            border: solid 1px color.adjust($red-color, $lightness: -55%);
+            background-color: color.adjust($red-color, $lightness: -55%);
         }
     }
 
@@ -295,14 +296,14 @@
         font-size: 25px;
 
         &.resolve {
-            border: solid 1px darken($green-color, 40%);
-            color: lighten($green-color, 35%);
+            border: solid 1px color.adjust($green-color, $lightness: -40%);
+            color: color.adjust($green-color, $lightness: 35%);
             background-color: $green-color;
         }
 
         &.fail {
-            border: solid 1px darken($red-color, 55%);
-            color: lighten($red-color, 20%);
+            border: solid 1px color.adjust($red-color, $lightness: -55%);
+            color: color.adjust($red-color, $lightness: 20%);
             background-color: $red-color;
         }
 
@@ -312,13 +313,13 @@
         &.resolve {
             border: solid 1px $green-color;
             color: $green-color;
-            background-color: darken($green-color, 40%);
+            background-color: color.adjust($green-color, $lightness: -40%);
         }
 
         &.fail {
             border: solid 1px $red-color;
             color: $red-color;
-            background-color: darken($red-color, 55%);
+            background-color: color.adjust($red-color, $lightness: -55%);
         }
     }
 
@@ -491,13 +492,13 @@
             &.resolve {
                 height: 64px;
                 background-color: $green-color;
-                color: darken($green-color, 40%);
+                color: color.adjust($green-color, $lightness: -40%);
             }
 
             &.fail {
                 height: 64px;
                 background-color: $red-color;
-                color: darken($red-color, 55%);
+                color: color.adjust($red-color, $lightness: -55%);
             }
 
             .label-game {
@@ -505,11 +506,11 @@
                 margin-top: 0.1rem;
 
                 &.resolve {
-                    color: darken($green-color, 40%);
+                    color: color.adjust($green-color, $lightness: -40%);
                 }
 
                 &.fail {
-                    color: darken($red-color, 55%);
+                    color: color.adjust($red-color, $lightness: -55%);
                 }
             }
         }
@@ -524,11 +525,11 @@
             z-index: 1;
 
             &.resolve {
-                color: darken($green-color, 40%);
+                color: color.adjust($green-color, $lightness: -40%);
             }
 
             &.fail {
-                color: darken($red-color, 55%);
+                color: color.adjust($red-color, $lightness: -55%);
             }
         }
 
@@ -547,19 +548,19 @@
             }
 
             h5.resolve {
-                color: darken($green-color, 40%);
+                color: color.adjust($green-color, $lightness: -40%);
             }
 
             h5.fail {
-                color: darken($red-color, 55%);
+                color: color.adjust($red-color, $lightness: -55%);
             }
 
             label.resolve {
-                color: darken($green-color, 40%);
+                color: color.adjust($green-color, $lightness: -40%);
             }
 
             label.fail {
-                color: darken($red-color, 55%);
+                color: color.adjust($red-color, $lightness: -55%);
             }
         }
     }

@@ -1,10 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "bootstrap-icons/font/bootstrap-icons.css";
-@import "primeicons/primeicons.css";
-@import "primeng/resources/themes/arya-orange/theme.css";
-@import "primeng/resources/primeng.css";
-@import "./styles/Bootstrap-custom.scss";
-@import "./styles/variables.scss";
+@use "sass:color";
+@use "bootstrap-icons/font/bootstrap-icons.css" as *;
+@use "./styles/Bootstrap-custom.scss" as *;
+@use "./styles/variables.scss" as variables;
 
 $cursor-sm: './assets/img/Cursor-cy-mini.png';
 $cursor-md: './assets/img/Cursor-cy-mid.png';
@@ -60,8 +58,8 @@ body {
 }
 
 .box {
-    border: 1px solid $yello-color;
-    background-color: $black-color;
+    border: 1px solid variables.$yello-color;
+    background-color: variables.$black-color;
 }
 
 .polygon-tl-corner {
@@ -99,59 +97,59 @@ body {
 .modal-content {
     clip-path: polygon(calc(0% + 1.2rem) 0, 100% 0, 100% calc(100% - 1.2rem), calc(100% - 1.2rem) 100%, 0 100%, 0 calc(0% + 1.2rem));
     border-radius: 0 !important;
-    color: $yello-color !important;
-    background-color: $black-color !important;
+    color: variables.$yello-color !important;
+    background-color: variables.$black-color !important;
 }
 
 .modal-header {
     border-radius: 0 !important;
-    background-color: $yello-color !important;
-    border: solid 1px $yello-color !important;
-    color: $black-color;
+    background-color: variables.$yello-color !important;
+    border: solid 1px variables.$yello-color !important;
+    color: variables.$black-color;
     font-family: Rajdhani-Medium;
 }
 
 .modal-body {
-    border: solid 1px $yello-color !important;
+    border: solid 1px variables.$yello-color !important;
     border-top: unset !important;
 }
 
 .modal-footer {
     border-radius: 0 !important;
-    background-color: $yello-color !important;
-    border: solid 1px $yello-color !important;
-    color: $black-color;
+    background-color: variables.$yello-color !important;
+    border: solid 1px variables.$yello-color !important;
+    color: variables.$black-color;
     font-family: Rajdhani-Medium;
 }
 
 .custom-input {
     height: 40px;
-    background-color: $black-color;
-    border: solid 2px $yello-color;
+    background-color: variables.$black-color;
+    border: solid 2px variables.$yello-color;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.2rem), calc(100% - 1.2rem) 100%, 0 100%);
 }
 
 .custom-input-decorator {
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1rem) 100%, 0 100%);
-    background-color: $yello-color;
+    background-color: variables.$yello-color;
 }
 
 .custom-input:focus-visible {
     outline: unset !important;
-    border: solid 2px $cian-color !important;
+    border: solid 2px variables.$cian-color !important;
 }
 
 .custom-input-decorator:focus-within {
-    background-color: $cian-color !important;
+    background-color: variables.$cian-color !important;
 }
 
 .invalid {
     .custom-input {
-        border: solid 2px $red-color;
+        border: solid 2px variables.$red-color;
     }
 
     &.custom-input-decorator {
-        background-color: $red-color;
+        background-color: variables.$red-color;
     }
 }
 
@@ -162,26 +160,26 @@ body {
 .btn-custom {
     padding: 0.5rem 1.5rem !important;
     border-radius: 0 !important;
-    border: solid 2px $cian-color !important;
-    background-color: $black-color !important;
-    color: $cian-color !important;
+    border: solid 2px variables.$cian-color !important;
+    background-color: variables.$black-color !important;
+    color: variables.$cian-color !important;
     font-family: Rajdhani-Medium !important;
     font-size: 1.2rem !important;
     text-align: center !important;
 
     &.yello-styles {
-        border: solid 2px $yello-color !important;
-        color: $yello-color !important;
+        border: solid 2px variables.$yello-color !important;
+        color: variables.$yello-color !important;
     }
     
     &.red-styles {
-        border: solid 2px $red-color !important;
-        color: $red-color !important;
+        border: solid 2px variables.$red-color !important;
+        color: variables.$red-color !important;
     }
     
     &.green-styles {
-        border: solid 2px $green-color !important;
-        color: $green-color !important;
+        border: solid 2px variables.$green-color !important;
+        color: variables.$green-color !important;
     }
 
     &.btn-menu {
@@ -194,36 +192,36 @@ body {
 }
 
 .btn-custom:hover {
-    color: $cian-color !important;
-    border: solid 2px $cian-color !important;
-    background-color: darken($cian-color, 50%) !important;
+    color: variables.$cian-color !important;
+    border: solid 2px variables.$cian-color !important;
+    background-color: color.adjust(variables.$cian-color, $lightness: -50%) !important;
 }
 
 .btn-custom:active {
-    background-color: $cian-color !important;
-    color: $black-color !important;
-    border: solid 2px $black-color !important;
+    background-color: variables.$cian-color !important;
+    color: variables.$black-color !important;
+    border: solid 2px variables.$black-color !important;
 }
 
 .btn-custom-decorator {
     transition: background-color .15s ease-in-out;
-    background-color: $cian-color;
+    background-color: variables.$cian-color;
 
     &.yello-styles {
-        background-color: $yello-color;
+        background-color: variables.$yello-color;
     }
 }
 
 .btn-custom-decorator:hover {
-    background-color: $cian-color;
+    background-color: variables.$cian-color;
 }
 
 .btn-custom-decorator:active {
     transition: background-color .15s ease-in-out;
-    background-color: $black-color;
+    background-color: variables.$black-color;
 
     &.disabled {
-        background-color: $cian-color;
+        background-color: variables.$cian-color;
     }
 }
 
@@ -232,7 +230,7 @@ body {
     appearance: none;
     width: 100%;
     height: 40px;
-    background: $black-color;
+    background: variables.$black-color;
     outline: none;
     -webkit-transition: .2s;
     transition: opacity .2s;
@@ -249,7 +247,7 @@ body {
     width: 40px;
     height: 40px;
     transition: background-color .15s ease-in-out;
-    background: $yello-color;
+    background: variables.$yello-color;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.2rem), calc(100% - 1.2rem) 100%, 0 100%) !important;
 }
 
@@ -257,28 +255,28 @@ body {
     width: 40px;
     height: 40px;
     transition: background-color .15s ease-in-out;
-    background: $yello-color;
+    background: variables.$yello-color;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.2rem), calc(100% - 1.2rem) 100%, 0 100%) !important;
 }
 
 .slider::-webkit-slider-thumb:hover {
     transition: background-color .15s ease-in-out;
-    background: $cian-color;
+    background: variables.$cian-color;
 }
 
 .slider::-moz-range-thumb:hover {
     transition: background-color .15s ease-in-out;
-    background: $cian-color;
+    background: variables.$cian-color;
 }
 
 .slider:active {
     transition: border-color .15s ease-in-out;
-    border-color: $cian-color;
+    border-color: variables.$cian-color;
 }
 
 .slider:active {
     transition: border-color .15s ease-in-out;
-    border-color: $cian-color;
+    border-color: variables.$cian-color;
 }
 
 .slider-text {
@@ -286,8 +284,13 @@ body {
     width: calc(100% - 1.5rem);
     height: 40px;
     display: flex;
-    background-color: $black-color;
-    border: solid 2px $yello-color;
+    background-color: variables.$black-color;
+    border: solid 2px variables.$yello-color;
     justify-content: center;
     align-items: center;
+}
+
+.text-style {
+    color: variables.$yello-color;
+    font-family: Rajdhani-Medium !important;
 }

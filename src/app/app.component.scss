@@ -1,4 +1,5 @@
-@import "../styles/variables.scss";
+@use "sass:color";
+@use "../styles/variables.scss" as *;
 
 .auido-control {
     z-index: 1000;
@@ -26,11 +27,6 @@
 
 .bi::before {
     vertical-align: -5px;
-}
-
-.text-volume {
-    color: $yello-color;
-    font-family: Rajdhani-Bold;
 }
 
 .slider-decorator {

@@ -1,9 +1,9 @@
-@import "./variables.scss";
+@use "./variables.scss" as variables;
 
 .form-select {
     font-family: Rajdhani-SemiBold !important;
-    color: $yello-color !important;
-    background-color: $black-color !important;
-    border: 2px solid $yello-color !important;
+    color: variables.$yello-color !important;
+    background-color: variables.$black-color !important;
+    border: 2px solid variables.$yello-color !important;
     border-radius: 0 !important;
 }

@@ -28,6 +28,7 @@
     "@angular/router": "^19.2.1",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
+    "@primeng/themes": "^19.0.9",
     "@types/node": "^20.9.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",

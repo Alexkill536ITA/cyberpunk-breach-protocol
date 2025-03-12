@@ -14,7 +14,7 @@
             <div class="col-6">
                 <div class="w-100 custom-input-decorator"
                     [class]="levelFrom.get('name')?.invalid && (levelFrom.get('name')?.dirty || levelFrom.get('name')?.touched) ? 'invalid':''">
-                    <input class="w-100 custom-input" type="text" formControlName="name">
+                    <input class="w-100 custom-input text-style" type="text" formControlName="name">
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
                                 <div class="col">
                                     <div class="w-100 custom-input-decorator"
                                         [class]="challenge.get('decorator')?.get('title')?.invalid && (challenge.get('decorator')?.get('title')?.dirty || challenge.get('decorator')?.get('title')?.touched) ? 'invalid':''">
-                                        <input class="w-100 custom-input" type="text" formControlName="title"
+                                        <input class="w-100 custom-input text-style" type="text" formControlName="title"
                                             [value]="challenge.get('decorator')?.value['title']">
                                     </div>
                                 </div>
@@ -122,7 +122,7 @@
                                 <div class="col">
                                     <div class="w-100 custom-input-decorator"
                                         [class]="challenge.get('decorator')?.get('description')?.invalid && (challenge.get('decorator')?.get('description')?.dirty || challenge.get('decorator')?.get('description')?.touched) ? 'invalid':''">
-                                        <input class="w-100 custom-input" type="text" formControlName="description"
+                                        <input class="w-100 custom-input text-style" type="text" formControlName="description"
                                             [value]="challenge.get('decorator')?.value['description']">
                                     </div>
                                 </div>

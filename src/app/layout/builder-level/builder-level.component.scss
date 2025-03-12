@@ -1,4 +1,5 @@
-@import "../../../styles/variables.scss";
+@use "sass:color";
+@use "../../../styles/variables.scss" as *;
 
 .root-container {
     width: 100%;
@@ -63,7 +64,7 @@
 }
 
 .btn:hover {
-    background-color: darken($cian-color, 50%);
+    background-color: color.adjust($cian-color, $lightness: -50%);
 }
 
 .btn:active{
