@@ -18,14 +18,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.12",
-    "@angular/common": "^16.2.12",
-    "@angular/compiler": "^16.2.12",
-    "@angular/core": "^16.2.12",
-    "@angular/forms": "^16.2.12",
-    "@angular/platform-browser": "^16.2.12",
-    "@angular/platform-browser-dynamic": "^16.2.12",
-    "@angular/router": "^16.2.12",
+    "@angular/animations": "^17.3.12",
+    "@angular/common": "^17.3.12",
+    "@angular/compiler": "^17.3.12",
+    "@angular/core": "^17.3.12",
+    "@angular/forms": "^17.3.12",
+    "@angular/platform-browser": "^17.3.12",
+    "@angular/platform-browser-dynamic": "^17.3.12",
+    "@angular/router": "^17.3.12",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
     "@types/node": "^20.9.2",
@@ -40,12 +40,12 @@
     "tslib": "^2.3.0",
     "update-electron-app": "^3.0.0",
     "uuid": "^9.0.1",
-    "zone.js": "~0.14.0"
+    "zone.js": "~0.14.10"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.1.5",
-    "@angular/cli": "^16.2.12",
-    "@angular/compiler-cli": "^16.2.12",
+    "@angular-devkit/build-angular": "^17.3.12",
+    "@angular/cli": "^17.3.12",
+    "@angular/compiler-cli": "^17.3.12",
     "@types/jasmine": "~4.3.0",
     "@types/uuid": "^9.0.7",
     "electron": "^31.1.0",
@@ -55,6 +55,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.2"
+    "typescript": "~5.4.5"
   }
 }

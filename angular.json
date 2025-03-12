@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cyberpunk-hexcode-breach:build:production"
+              "buildTarget": "cyberpunk-hexcode-breach:build:production"
             },
             "development": {
-              "browserTarget": "cyberpunk-hexcode-breach:build:development"
+              "buildTarget": "cyberpunk-hexcode-breach:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cyberpunk-hexcode-breach:build"
+            "buildTarget": "cyberpunk-hexcode-breach:build"
           }
         },
         "test": {
