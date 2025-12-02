@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ElectronAction, Level } from 'src/app/models/comon.model';
 import { MakerLevelComponent } from "../../modules/maker-level/maker-level.component";
@@ -16,7 +16,7 @@ export class BuilderLevelComponent implements OnInit {
   levels: Level[] = [];
 
   constructor(
-    private modalService: NgbModal,
+    @Inject(NgbModal) private modalService: NgbModal,
     private controlerSqllite3Service: ControlerSqllite3Service
   ) { }
 
